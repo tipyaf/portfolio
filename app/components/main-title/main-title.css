@@ -1,0 +1,14 @@
+.title {
+    font-weight: 800;
+    color: transparent;
+    background-position: 40% 50%;
+    -webkit-background-clip: text;
+    position: relative;
+    background-color: var(--primary);
+    background-image: url("../../../public/red-baloon.png") ;
+    background-size: 40%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    animation: fadeIn 1.5s both;
+    cursor: grab;
+}
