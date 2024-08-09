@@ -9,53 +9,20 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                primary: {
-                    default: 'var(--primary-500)',
-                    100: 'var(--primary-100)',
-                    200: 'var(--primary-200)',
-                    300: 'var(--primary-300)',
-                    400: 'var(--primary-400)',
-                    500: 'var(--primary-500)',
-                    600: 'var(--primary-600)',
-                    700: 'var(--primary-700)',
-                    800: 'var(--primary-800)',
-                    900: 'var(--primary-900)',
-                    950: 'var(--primary-950)',
-                },
-                secondary: {
-                    default: 'var(--secondary-500)',
-                    50: 'var(--secondary-50)',
-                    100: 'var(--secondary-100)',
-                    200: 'var(--secondary-200)',
-                    300: 'var(--secondary-300)',
-                    400: 'var(--secondary-400)',
-                    500: 'var(--secondary-500)',
-                    600: 'var(--secondary-600)',
-                    700: 'var(--secondary-700)',
-                    800: 'var(--secondary-800)',
-                    900: 'var(--secondary-900)',
-                    950: 'var(--secondary-950)',
-                },
-                tertiary: {
-                    default: 'var(--tertiary-500)',
-                    50: 'var(--tertiary-50)',
-                    100: 'var(--tertiary-100)',
-                    200: 'var(--tertiary-200)',
-                    300: 'var(--tertiary-300)',
-                    400: 'var(--tertiary-400)',
-                    500: 'var(--tertiary-500)',
-                    600: 'var(--tertiary-600)',
-                    700: 'var(--tertiary-700)',
-                    800: 'var(--tertiary-800)',
-                    900: 'var(--tertiary-900)',
-                    950: 'var(--tertiary-950)',
-                },
+                primary: 'rgba(51, 148, 242, 0.8)',
+                secondary: 'rgba(242, 217, 51, 0.8)',
+                tertiary: 'rgb(253, 101, 113, 1)'
             },
-            // backgroundImage: {
-            //     "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-            //     "gradient-conic":
-            //         "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-            // },
+            boxShadow: {
+                'portrait-start': '25px 11px 2px rgba(242, 217, 51, 0.8), 0 -3px 12px 0 #b4c9ea, 0 4px 4px transparent',
+                'portrait-end': '3px 2px 10px rgb(255, 255, 255), 0 -3px 12px 0 #b4c9ea, 0 4px 4px transparent;'
+            },
+            transitionProperty: {
+                'box-shadow': 'box-shadow',
+            },
+            transitionDuration: {
+                '1000': '1000ms',
+            },
         },
     },
     plugins: [],

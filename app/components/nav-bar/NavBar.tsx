@@ -13,16 +13,10 @@ export default function NavBar() {
             setScroll(window.scrollY >= 90);
         });
     });
-
-    let buttonClass = "btn-outline-primary";
-    if (scroll) {
-        buttonClass = "btn-outline-white";
-    }
-
     return (
         <header className={`${css.navBar} ${scroll ? css.scrolled : css.initial} p-3`}>
             <nav className="flex align-center justify-end">
-                <Button className={buttonClass} icon={FiDownloadCloud}>Check out my resume</Button>
+                <Button icon={FiDownloadCloud}>Check out my resume</Button>
             </nav>
         </header>
     )

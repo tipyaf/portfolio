@@ -8,18 +8,32 @@ interface ButtonProps {
     onClick?: () => void;
     className?: string;
     icon?: IconType;
-    children: ReactNode;
+    children?: ReactNode;
+    href?: string;
 }
 
-export default function Button({ onClick, className = '', icon: Icon, children }: ButtonProps) {
-    return (
-        <motion.button
-            onClick={onClick}
-            whileTap={{ scale: 0.85 }}
-            className={`btn ${className}`}
-        >
-            {Icon && <Icon className="mr-1 inline" />}
-            {children}
-        </motion.button>
-    );
+export default function Button({ onClick, className = '', icon: Icon, children, href}: ButtonProps) {
+    const classStyle = `btn ${className}`;
+    const iconClasStyle = "mr-1 inline";
+    const scale = 0.85;
+    const link = <motion.a
+        href={href}
+        onClick={onClick}
+        whileTap={{scale}}
+        className={classStyle}
+    >
+        {Icon && <Icon className={iconClasStyle}/>}
+        {children}
+    </motion.a>
+
+    const button = <motion.button
+        onClick={onClick}
+        whileTap={{scale}}
+        className={classStyle}
+    >
+        {Icon && <Icon className={iconClasStyle}/>}
+        {children}
+    </motion.button>
+
+    return (href ? link : button);
 };

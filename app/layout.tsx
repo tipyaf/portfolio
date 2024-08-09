@@ -1,20 +1,22 @@
-import { Manrope } from "next/font/google";
+import type {Metadata} from "next";
+import {Noto_Sans_Javanese} from "next/font/google";
 import "./globals.css";
-import NavBar from "@/app/components/nav-bar/NavBar";
 
-const manrope = Manrope({ subsets: ["latin"] })
+interface RootLayoutProps {
+    children: React.ReactNode;
+}
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body className={manrope.className}>
-      <NavBar />
-      {children}
-      </body>
-    </html>
-  );
+const noto = Noto_Sans_Javanese({subsets: ["latin"]});
+
+export const metadata: Metadata = {
+    title: "Yannick Benchimol",
+    description: "Experienced front-end developer with 8 years in Angular, Vue.js, React, Nuxt.js, Next.js, and Node.js. Explore my portfolio to see innovative projects and high-performance web solutions tailored to your needs.",
+};
+
+export default function RootLayout({children}: Readonly<RootLayoutProps>) {
+    return (
+        <html lang="en">
+        <body className={noto.className}>{children}</body>
+        </html>
+    );
 }
