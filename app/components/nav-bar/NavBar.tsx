@@ -13,12 +13,10 @@ export default function NavBar() {
             setScroll(window.scrollY >= 90);
         });
     });
-
-    const buttonClass = "text-white";
     return (
         <header className={`${css.navBar} ${scroll ? css.scrolled : css.initial} p-3`}>
             <nav className="flex align-center justify-end">
-                <Button className={buttonClass} icon={FiDownloadCloud}>Check out my resume</Button>
+                <Button icon={FiDownloadCloud}>Check out my resume</Button>
             </nav>
         </header>
     )

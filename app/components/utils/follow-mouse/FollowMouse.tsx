@@ -2,7 +2,7 @@
 
 import {motion} from "framer-motion";
 import {useEffect, useState} from "react";
-import {useMovingBackground} from "@/app/hooks/useMovingBackground";
+import {useMovingMouse} from "@/app/hooks/useMovingMouse";
 
 interface ImageCursorFollowerProps {
     children: React.ReactNode;
@@ -12,8 +12,8 @@ interface ImageCursorFollowerProps {
 // Linear interpolation function
 const lerp = (start: number, end: number, factor: number) => start + (end - start) * factor;
 
-export default function ImageCursorFollower({children, className = ''}: Readonly<ImageCursorFollowerProps>) {
-    const {mainRef, currentX, currentY, targetX, targetY, setCurrentX, setCurrentY} = useMovingBackground();
+export default function FollowMouse({children, className = ''}: Readonly<ImageCursorFollowerProps>) {
+    const {mainRef, currentX, currentY, targetX, targetY, setCurrentX, setCurrentY} = useMovingMouse();
 
     const [isInitialAnimationDone] = useState(false);
     // Handle animation based on mouse movement after the initial animation
@@ -39,9 +39,9 @@ export default function ImageCursorFollower({children, className = ''}: Readonly
     return (
         <motion.div
             ref={mainRef}
-            className={`${className} bg-baloon-effect p-2`}
+            className={`${className} cursor-grab`}
             transition={{ease: "easeInOut", duration: 0.75}}
-            style={{backgroundPosition: `${currentX}% ${currentY}%`}}
+            style={{translateX: `${currentX}%`, translateY: `${-currentY}%`}}
         >
             {children}
         </motion.div>

@@ -3,57 +3,31 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-  --blue: rgba(51,148,242,0.8);
-  --yellow: #ffcc02;
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+    --nav-bar-height: 4rem;
 }
 
 @media (prefers-color-scheme: light) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-    --blue: rgba(51,148,242,0.8);
-  }
+    :root {
+        --foreground-rgb: 255, 255, 255;
+        --background-start-rgb: 0, 0, 0;
+        --background-end-rgb: 0, 0, 0;
+    }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(
+            to bottom,
+            transparent,
+            rgb(var(--background-end-rgb))
+    ) rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
-/*todo: à dégager*/
-.bg-baloon-effect {
-  color: transparent;
-  background-position: 40% 50%;
-  -webkit-background-clip: text;
-  position: relative;
-  background-color: white;
-  background-image: url("../public/red-baloon.png");
-  background-size: 40%;
-  background-repeat: no-repeat;
-  /*opacity: 0;*/
-  animation: fadeIn 1.5s both;
-  cursor: grab;
-}
-.depth {
-  text-shadow: 0 4px 4px #ffffff61, 0 0 0 #8ca2c045, 0 4px 4px transparent;
-}
-
-.portrait {
-  background-image: url("../public/portrait_Yannick_Benchimol.png");
-  transform:scaleX(-1);
+    .text-balance {
+        text-wrap: balance;
+    }
 }
