@@ -9,13 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/third-parties": "^14.2.5",
     "@sanity/vision": "^3.52.4",
     "framer-motion": "^11.3.22",
     "next": "14.2.5",
     "next-sanity": "^9.4.3",
-    "nextjs-simple-typewriter": "^5.2.2",
     "react": "^18",
     "react-dom": "^18",
+    "react-use-measure": "^2.1.1",
     "sanity": "^3.52.4"
   },
   "devDependencies": {

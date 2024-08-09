@@ -1,0 +1,28 @@
+.navBar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: var(--nav-bar-height);
+    animation: fadeInDown 3s ease-out;
+    z-index: 1;
+}
+
+.navBar.initial {
+    color: var(--primary-500);
+}
+
+.navBar.scrolled {
+    color: var(--primary-50);
+    background-color: var(--primary-500);
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
