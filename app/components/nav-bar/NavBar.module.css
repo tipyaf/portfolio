@@ -1,19 +1,15 @@
 .navBar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: var(--nav-bar-height);
+    @apply fixed top-0 w-full h-[var(--nav-bar-height)];
     animation: fadeInDown 3s ease-out;
     z-index: 1;
 }
 
 .navBar.initial {
-    color: var(--primary-500);
+    @apply text-tertiary;
 }
 
 .navBar.scrolled {
-    color: var(--primary-50);
-    background-color: var(--primary-500);
+    @apply text-white bg-secondary;
 }
 
 @keyframes fadeInDown {

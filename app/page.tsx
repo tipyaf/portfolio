@@ -1,15 +1,13 @@
-import HomeSection from "@/app/components/main-title/HomeSection";
-import { YouTubeEmbed } from "@next/third-parties/google";
-import "./components/main-title/HomeSection.module.css";
+"use client"
 
-export default async function Home() {
-  return (
+import NavBar from "@/app/components/nav-bar/NavBar";
+import HomeSection from "@/app/components/home-section/HomeSection";
 
-      <main className="w-screen h-screen">
-          <HomeSection/>
-          <section id="about" className="w-full h-full flex flex-col items-center justify-center">
-              <YouTubeEmbed videoid="ogfYd705cRs" height={400} />
-          </section>
-      </main>
-  );
+export default function Home() {
+    return (
+        <main className="flex min-h-screen flex-col items-center justify-between">
+            <NavBar/>
+            <HomeSection/>
+        </main>
+    );
 }

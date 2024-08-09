@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from 'react';
 // Linear interpolation function
 const lerp = (start: number, end: number, factor: number) => start + (end - start) * factor;
 
-export function useMovingBackground() {
+export function useMovingMouse() {
     const [currentX, setCurrentX] = useState(50);
     const [currentY, setCurrentY] = useState(50);
     const [targetX, setTargetX] = useState(50);
@@ -18,8 +18,8 @@ export function useMovingBackground() {
                 const containerWidth = containerRect.width;
                 const containerHeight = containerRect.height;
 
-                const mousePositionInContainerX = ((e.clientX - containerRect.left) / containerWidth) * 100;
-                const mousePositionInContainerY = ((e.clientY - containerRect.top) / containerHeight) * 100;
+                const mousePositionInContainerX = ((e.clientX - containerRect.left / 2) / containerWidth) * 100;
+                const mousePositionInContainerY = ((e.clientY - containerRect.top / 2) / containerHeight) * 100;
 
                 setTargetX(mousePositionInContainerX);
                 setTargetY(100 - mousePositionInContainerY); // Invert Y for the background
