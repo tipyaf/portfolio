@@ -3,7 +3,7 @@
     background-position: 40% 50%;
     -webkit-background-clip: text;
     position: relative;
-    background-color: var(--primary-500);
+    background-color: var(--blue);
     background-image: url("../../../public/red-baloon.png") ;
     background-size: 40%;
     background-repeat: no-repeat;

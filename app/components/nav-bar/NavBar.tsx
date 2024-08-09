@@ -14,11 +14,7 @@ export default function NavBar() {
         });
     });
 
-    let buttonClass = "btn-outline-primary";
-    if (scroll) {
-        buttonClass = "btn-outline-white";
-    }
-
+    const buttonClass = "text-white";
     return (
         <header className={`${css.navBar} ${scroll ? css.scrolled : css.initial} p-3`}>
             <nav className="flex align-center justify-end">
