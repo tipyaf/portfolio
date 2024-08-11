@@ -1,8 +1,8 @@
 'use client';
 
+import { useMovingMouse } from '@/app/hooks/useMovingMouse';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { useMovingMouse } from '@/app/hooks/useMovingMouse';
 
 interface ImageCursorFollowerProps {
   children: React.ReactNode;

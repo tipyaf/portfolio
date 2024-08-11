@@ -1,6 +1,6 @@
 .navBar {
-    @apply fixed top-0 w-full h-[var(--nav-bar-height)];
     animation: fadeInDown 3s ease-out;
+    transition: width ease-in-out;
     z-index: 1;
 }
 
@@ -9,7 +9,7 @@
 }
 
 .navBar.scrolled {
-    @apply text-white bg-secondary;
+    @apply max-w-[600px];
 }
 
 @keyframes fadeInDown {

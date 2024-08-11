@@ -20,7 +20,7 @@ export default function Button({
   href,
 }: ButtonProps) {
   const classStyle = `btn ${className}`;
-  const iconClasStyle = 'mr-1 inline';
+  const iconClasStyle = 'mr-2 inline';
   const scale = 0.85;
   const link = (
     <motion.a href={href} onClick={onClick} whileTap={{ scale }} className={classStyle}>
