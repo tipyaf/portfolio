@@ -21,7 +21,7 @@ export default function NavBar() {
           <MenuList></MenuList>
         </Popover>
         <Button
-          className="flex h-10 items-center justify-center rounded-[62.5rem] bg-black px-4 py-2 font-medium text-white transition-colors duration-300 hover:bg-black/80"
+          className="flex h-10 items-center justify-center rounded-[62.5rem] bg-tertiary px-4 py-2 font-medium text-white transition-colors duration-300 hover:bg-tertiary/80"
           icon={FiDownloadCloud}
         >
           CV

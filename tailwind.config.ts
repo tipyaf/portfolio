@@ -5,8 +5,7 @@ export const COLORS: ColorsTheme = {
   white: 'rgb(255,255,255)',
   primary: 'rgb(51,146,237)',
   secondary: 'rgb(222 227 48)',
-  tertiary: 'rgb(253, 101, 113, 1)',
-  black: 'rgb(25,24,24)',
+  tertiary: 'rgb(48,48,48)',
 };
 
 const config: Config = {

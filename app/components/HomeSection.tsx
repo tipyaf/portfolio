@@ -57,7 +57,7 @@ export default function HomeSection() {
           </p>
 
           <div className="mt-20 flex w-full justify-center">
-            <Button className="rounded-full bg-black px-10 py-4 text-xl font-bold" href="#about">
+            <Button className="rounded-full bg-tertiary px-10 py-4 text-xl font-bold" href="#about">
               Learn more
             </Button>
           </div>
