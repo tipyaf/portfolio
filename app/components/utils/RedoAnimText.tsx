@@ -33,13 +33,11 @@ export default function RedoAnimText({
       repeatDelay: 1,
       onUpdate(latest) {
         if (updatedThisRound.get() === true && latest > 0) {
-          console.log('1');
           updatedThisRound.set(false);
         } else if (updatedThisRound.get() === false && latest === 0) {
           if (textIndex.get() === texts.length - 1) {
             textIndex.set(0);
           } else {
-            console.log('3');
             textIndex.set(textIndex.get() + 1);
           }
           updatedThisRound.set(true);

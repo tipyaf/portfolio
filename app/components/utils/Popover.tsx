@@ -54,7 +54,7 @@ export default function Popover({ children, className, label, icon }: Popover) {
       <div
         id={popoverContainerId}
         style={{ left: `-${size / 4}px` }}
-        className="absolute top-[40px] w-0 overflow-y-auto rounded-2xl bg-black/85 py-4 opacity-0 shadow-2xl backdrop-blur-lg"
+        className="absolute top-[40px] w-0 overflow-y-auto rounded-2xl bg-tertiary/85 py-4 opacity-0 shadow-2xl backdrop-blur-lg"
       >
         <div className="h-full" id={popoverContentId}>
           {children}

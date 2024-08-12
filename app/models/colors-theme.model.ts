@@ -1,3 +1,3 @@
-type ColorName = 'primary' | 'secondary' | 'white' | 'tertiary' | 'black';
+type ColorName = 'primary' | 'secondary' | 'white' | 'tertiary';
 
 export type ColorsTheme = Record<ColorName, string>;
