@@ -4,8 +4,9 @@ import type { Config } from 'tailwindcss';
 export const COLORS: ColorsTheme = {
   white: 'rgb(255,255,255)',
   primary: 'rgb(51,146,237)',
-  secondary: 'rgb(227,204,48)',
+  secondary: 'rgb(222 227 48)',
   tertiary: 'rgb(253, 101, 113, 1)',
+  black: 'rgb(25,24,24)',
 };
 
 const config: Config = {
@@ -17,12 +18,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: COLORS.primary,
-        secondary: COLORS.secondary,
-        tertiary: COLORS.tertiary,
+        ...COLORS,
       },
       boxShadow: {
-        'portrait-start': `10px 5px 2px ${COLORS.secondary}, 0 -3px 12px 0 #b4c9ea, 0 4px 4px transparent`,
+        'portrait-start': `10px 2px 2px ${COLORS.secondary}, 0 -3px 12px 0 #b4c9ea, 0 4px 4px transparent`,
         'portrait-end': `3px 2px 10px ${COLORS.white}, 0 -3px 12px 0 #b4c9ea, 0 4px 4px transparent;`,
       },
       transitionProperty: {
