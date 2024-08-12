@@ -1,12 +1,13 @@
+@import "styles/section.css";
+@import "styles/animation.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root {
     --foreground-rgb: 0, 0, 0;
     --background-start-rgb: 214, 219, 220;
     --background-end-rgb: 255, 255, 255;
-    --nav-bar-height: 4rem;
 }
 
 @media (prefers-color-scheme: light) {
@@ -15,6 +16,10 @@
         --background-start-rgb: 0, 0, 0;
         --background-end-rgb: 0, 0, 0;
     }
+}
+
+html {
+    scroll-behavior: smooth !important;
 }
 
 body {

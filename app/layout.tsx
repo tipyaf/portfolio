@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
-import { Noto_Sans_Javanese } from 'next/font/google';
+import { Raleway } from 'next/font/google';
 import './globals.css';
 
 interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-const noto = Noto_Sans_Javanese({ subsets: ['latin'] });
+const releway = Raleway({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Yannick Benchimol',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
     <html lang="en">
-      <body className={noto.className}>{children}</body>
+      <body className={releway.className}>{children}</body>
     </html>
   );
 }
