@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // Linear interpolation function
 const lerp = (start: number, end: number, factor: number) => start + (end - start) * factor;

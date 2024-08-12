@@ -1,7 +1,7 @@
+import { animate, RepeatType, useMotionValue } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import RedoAnimText from './RedoAnimText';
 import CursorBlinker from './CursorBlinker';
-import { useMotionValue, animate, RepeatType } from 'framer-motion';
+import RedoAnimText from './RedoAnimText';
 
 export interface IAnimTextProps {
   delay: number;
