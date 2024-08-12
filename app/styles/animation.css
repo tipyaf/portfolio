@@ -1,0 +1,59 @@
+.rotate-shapes {
+    animation: aroundTheWorld 25s ease-in-out infinite;
+    transform: translateZ(0);
+}
+
+@keyframes aroundTheWorld {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    8% {
+        transform: rotate(-5deg);
+    }
+    18.66% {
+        transform: rotate(98deg);
+    }
+    25% {
+        transform: rotate(90deg);
+    }
+    26.5% {
+        transform: rotate(90deg);
+    }
+    33% {
+        transform: rotate(85deg);
+    }
+    41.666% {
+        transform: rotate(188deg);
+    }
+    48% {
+        transform: rotate(180deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    58% {
+        transform: rotate(175deg);
+    }
+    66.666% {
+        transform: rotate(278deg);
+    }
+    73% {
+        transform: rotate(270deg);
+    }
+    75% {
+        transform: rotate(270deg);
+    }
+    83% {
+        transform: rotate(265deg);
+    }
+    91.666% {
+        transform: rotate(368deg);
+    }
+    98% {
+        transform: rotate(360deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

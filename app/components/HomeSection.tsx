@@ -49,7 +49,7 @@ export default function HomeSection() {
             </h2>
           </div>
           <p className="max-w-[40rem] text-center">
-            <strong className="text-secondary">Angular</strong>,
+            <strong className="text-secondary">Angular</strong>,{' '}
             <strong className="text-secondary">Vue.js</strong>,{' '}
             <strong className="text-secondary">Nuxt</strong>,{' '}
             <strong className="text-secondary">Next</strong>, and{' '}
@@ -57,7 +57,7 @@ export default function HomeSection() {
           </p>
 
           <div className="mt-20 flex w-full justify-center">
-            <Button className="rounded-full bg-black px-10 py-5 text-2xl font-bold" href="#about">
+            <Button className="rounded-full bg-black px-10 py-4 text-xl font-bold" href="#about">
               Learn more
             </Button>
           </div>

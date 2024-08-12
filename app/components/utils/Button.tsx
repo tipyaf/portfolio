@@ -1,14 +1,12 @@
 'use client';
 
+import { IButton } from '@/app/models/button';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { ReactNode } from 'react';
-import { IconType } from 'react-icons';
 
-interface ButtonProps {
-  onClick?: () => void;
-  className?: string;
-  icon?: IconType;
-  children?: ReactNode;
+interface ButtonProps extends IButton {
+  children: ReactNode;
   href?: string;
 }
 
@@ -17,16 +15,17 @@ export default function Button({
   className = '',
   icon: Icon,
   children,
-  href,
+  href = '',
 }: ButtonProps) {
   const classStyle = `btn ${className}`;
   const iconClasStyle = 'mr-2 inline';
   const scale = 0.85;
+  const MotionLink = motion(Link);
   const link = (
-    <motion.a href={href} onClick={onClick} whileTap={{ scale }} className={classStyle}>
+    <MotionLink href={href} whileTap={{ scale }} className={className}>
       {Icon && <Icon className={iconClasStyle} />}
       {children}
-    </motion.a>
+    </MotionLink>
   );
 
   const button = (
