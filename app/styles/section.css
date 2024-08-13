@@ -3,7 +3,7 @@
 }
 
 .section-container .heading {
-    @apply text-5xl font-extrabold py-3;
+    @apply text-5xl py-3;
 }
 
 .section-container .body {
