@@ -1,14 +1,21 @@
 'use client';
 
-import AnimText from '@/app/components/utils/AnimText';
-import Button from '@/app/components/utils/Button';
-import { useCalculateYearsFromDate } from '@/app/hooks/useCalculateYearsFromDate';
+import AnimText from '@/components/utils/AnimText';
+import Button from '@/components/utils/Button';
+import { useCalculateYearsFromDate } from '@/hooks/useCalculateYearsFromDate';
+import { PortableText } from '@portabletext/react';
+import { PortableTextBlock } from 'next-sanity';
 import Image from 'next/image';
 
-export default function HomeSection() {
+interface HomeSectionProps {
+  userName: string;
+  role: string;
+  headline: PortableTextBlock[];
+}
+
+export default function HomeSection({ userName, role, headline }: HomeSectionProps) {
   const experience = useCalculateYearsFromDate('2016-09-01');
   const experienceText = `with ${experience} years of experience.`;
-
   return (
     <section className="relative flex h-screen max-h-[1024px] min-h-[720px] w-full flex-col overflow-hidden bg-primary text-white">
       {/*background shapes*/}
@@ -28,19 +35,15 @@ export default function HomeSection() {
           {/*only SEO*/}
           <h1 className="sr-only">
             {/* eslint-disable-next-line react/no-unescaped-entities */}
-            I'm Yannick Benchimol and I'm a <strong>Frontend developer</strong> {experienceText}
+            I'm ${userName} and I'm a <strong>{role}</strong> {experienceText}
           </h1>
 
           <div>
             <h1 className="max-w-5xl text-5xl">
-              <AnimText text={"Hi, I'm Yannick Benchimol !"} duration={3} />
+              <AnimText text={`Hi, I'm ${userName} !`} duration={3} />
             </h1>
             <h2 className="max-w-2xl text-3xl">
-              <AnimText
-                className="mr-2 font-medium"
-                text={"I'm a Frontend developer"}
-                duration={3}
-              />
+              <AnimText className="mr-2 font-medium" text={`I'm a ${role}`} duration={3} />
               <AnimText
                 className="font-medium text-secondary"
                 text={experienceText}
@@ -48,14 +51,10 @@ export default function HomeSection() {
               />
             </h2>
           </div>
-          <p className="max-w-[40rem] text-center">
-            <strong className="text-secondary">Angular</strong>,{' '}
-            <strong className="text-secondary">Vue.js</strong>,{' '}
-            <strong className="text-secondary">Nuxt</strong>,{' '}
-            <strong className="text-secondary">Next</strong>, and{' '}
-            <strong className="text-secondary">React</strong> are my favorite playgrounds.
-          </p>
-
+          <div className="max-w-[40rem] text-center">
+            {/*todo: configure bold in secondary color*/}
+            <PortableText value={headline} />
+          </div>
           <div className="mt-20 flex w-full justify-center">
             <Button className="rounded-full bg-tertiary px-10 py-4 text-xl font-bold" href="#about">
               Learn more

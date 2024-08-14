@@ -8,10 +8,12 @@ interface AnimatedPortraitProps {
   imageSize: number;
   backgroundColor?: string;
   initialBackgroundColor?: string;
+  src: string;
 }
 
 export default function AnimatedPortrait({
   imageSize,
+  src,
   initialBackgroundColor = COLORS.secondary,
   backgroundColor = COLORS.white,
 }: AnimatedPortraitProps) {
@@ -65,7 +67,7 @@ export default function AnimatedPortrait({
       >
         <Image
           className="rounded-full"
-          src="/portrait_Yannick_Benchimol.png"
+          src={src}
           priority={true}
           height={100}
           width={100}

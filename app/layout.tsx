@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   title: 'Yannick Benchimol',
   description:
     'Experienced front-end developer with 8 years in Angular, Vue.js, React, Nuxt.js, Next.js, and Node.js. Explore my portfolio to see innovative projects and high-performance web solutions tailored to your needs.',
+  openGraph: {
+    images: 'add-your-open-graph-image-url-here', // todo: change url
+  },
 };
 
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
