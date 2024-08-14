@@ -1,28 +1,25 @@
-import Button from '@/app/components/utils/Button';
-import { ILink } from '@/app/models/link.model';
-import { FaGithub, FaLinkedin } from 'react-icons/fa6';
+import Button from '@/components/utils/Button';
+import { SocialNetworkIconMap } from '@/constants/social-network-icon-map';
+import { SocialLinks } from '@/types/server';
 import { SiMinutemailer } from 'react-icons/si';
 
-// todo: remove to get from server
-const socialLinks: ILink[] = [
-  {
-    label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/yannick-b-4b9a8592',
-    icon: FaLinkedin,
-  },
-  {
-    label: 'Github',
-    href: 'https://www.linkedin.com/in/yannick-b-4b9a8592',
-    icon: FaGithub,
-  },
-  {
-    label: 'Mail',
-    href: 'mailto:exemple@mail.com',
-    icon: SiMinutemailer,
-  },
-];
+interface LinksHeaderSectionProps {
+  socialLinksData: SocialLinks[];
+}
 
-export function LinksHeaderSection() {
+export function LinksHeaderSection({ socialLinksData }: LinksHeaderSectionProps) {
+  const socialLinks = [
+    ...socialLinksData.map((item) => ({
+      label: item.name,
+      href: item.url,
+      icon: SocialNetworkIconMap.get(item.code),
+    })),
+    {
+      label: 'Mail',
+      href: 'mailto:exemple@mail.com',
+      icon: SiMinutemailer,
+    },
+  ];
   return (
     <ul className="absolute left-0 top-3 flex w-screen justify-center font-bold text-current sm:justify-end">
       {socialLinks.map((link, i) => (

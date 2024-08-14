@@ -1,6 +1,6 @@
 'use client';
 
-import Button from '@/app/components/utils/Button';
+import Button from '@/components/utils/Button';
 import { stagger, useAnimate } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { IconType } from 'react-icons';
