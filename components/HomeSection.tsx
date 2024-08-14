@@ -35,7 +35,7 @@ export default function HomeSection({ userName, role, headline }: HomeSectionPro
           {/*only SEO*/}
           <h1 className="sr-only">
             {/* eslint-disable-next-line react/no-unescaped-entities */}
-            I'm ${userName} and I'm a <strong>{role}</strong> {experienceText}
+            I'm {userName} and I'm a <strong>{role}</strong> {experienceText}
           </h1>
 
           <div>
