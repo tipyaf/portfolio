@@ -1,5 +1,5 @@
-import Button from '@/app/components/utils/Button';
-import { ILink } from '@/app/models/link.model';
+import Button from '@/components/utils/Button';
+import { ILink } from '@/types/client/link.model';
 
 export default function MenuList() {
   const items: ILink[] = [

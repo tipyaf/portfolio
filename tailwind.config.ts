@@ -1,4 +1,4 @@
-import { ColorsTheme } from '@/app/models/colors-theme.model';
+import { ColorsTheme } from '@/types/client/colors-theme.model';
 import type { Config } from 'tailwindcss';
 
 export const COLORS: ColorsTheme = {
