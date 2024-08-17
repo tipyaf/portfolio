@@ -2,6 +2,7 @@ import { PortableTextBlock } from 'next-sanity';
 
 export type ProfileType = {
   readonly _id: string;
+  readonly _updatedAt: string;
   readonly fullName: string;
   readonly role: string;
   readonly headline: PortableTextBlock[];
@@ -17,7 +18,7 @@ export type ProfileType = {
   readonly resumeURL: string;
   readonly socialLinks: SocialLinks[];
   readonly skills: string[];
-  readonly _updatedAt: string;
+  readonly jobs: Job[];
 };
 
 // todo: move to clean
@@ -27,4 +28,20 @@ export type SocialLinks = { readonly name: string; url: string; code: SocialLink
 export enum SocialLinkCode {
   LKIN = 'LKIN',
   GHUB = 'GHUB',
+}
+
+export interface Job {
+  readonly company: {
+    readonly name: string;
+    readonly url?: string;
+  };
+  readonly jobType: string;
+  readonly location: string;
+  readonly date: {
+    readonly start: string;
+    readonly end?: string;
+    readonly present?: boolean;
+  };
+  readonly role: string;
+  readonly description: PortableTextBlock[];
 }

@@ -5,9 +5,10 @@ import { SiMinutemailer } from 'react-icons/si';
 
 interface LinksHeaderSectionProps {
   socialLinksData: SocialLinks[];
+  email: string;
 }
 
-export function LinksHeaderSection({ socialLinksData }: LinksHeaderSectionProps) {
+export function LinksHeaderSection({ socialLinksData, email }: LinksHeaderSectionProps) {
   const socialLinks = [
     ...socialLinksData.map((item) => ({
       label: item.name,
@@ -16,7 +17,7 @@ export function LinksHeaderSection({ socialLinksData }: LinksHeaderSectionProps)
     })),
     {
       label: 'Mail',
-      href: 'mailto:exemple@mail.com',
+      href: `mailto:${email}`,
       icon: SiMinutemailer,
     },
   ];
