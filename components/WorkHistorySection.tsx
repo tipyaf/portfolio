@@ -3,10 +3,10 @@
 import JobCard from '@/components/JobCard/JobCard';
 import { LinksHeaderSection } from '@/components/LinksHeaderSection';
 import { useJobs } from '@/hooks/useJobs';
-import { Job, SocialLinks } from '@/types/server';
+import { Job, SocialLink } from '@/types/server';
 
 interface WorkHistoryProps {
-  socialLinksData: SocialLinks[];
+  socialLinksData: SocialLink[];
   jobs: Job[];
   email: string;
 }
