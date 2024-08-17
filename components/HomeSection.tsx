@@ -15,9 +15,9 @@ interface HomeSectionProps {
 
 export default function HomeSection({ userName, role, headline }: HomeSectionProps) {
   const experience = useCalculateYearsFromDate('2016-09-01');
-  const experienceText = `with ${experience} years of experience.`;
+  const experienceText = `with ${experience} years of experience`;
   return (
-    <section className="relative flex h-screen max-h-[1024px] min-h-[720px] w-full flex-col overflow-hidden bg-primary text-white">
+    <section className="relative flex h-screen max-h-[1024px] min-h-[720px] w-full flex-col overflow-hidden bg-gradient-to-tl from-secondary via-white via-10% to-primary to-70%">
       {/*background shapes*/}
       <div className="absolute left-1/2 top-0 z-0 grid w-[120%] min-w-[900px] max-w-[2048px] -translate-x-1/2 grid-cols-1 grid-rows-1 lg:-top-[15%]">
         <Image
@@ -43,7 +43,7 @@ export default function HomeSection({ userName, role, headline }: HomeSectionPro
               <AnimText text={`Hi, I'm ${userName} !`} duration={3} />
             </h1>
             <h2 className="max-w-2xl text-3xl">
-              <AnimText className="mr-2 font-medium" text={`I'm a ${role}`} duration={3} />
+              <AnimText className="mr-2 font-medium" text={role} duration={3} />
               <AnimText
                 className="font-medium text-secondary"
                 text={experienceText}

@@ -4,7 +4,7 @@ import client from './sanity.client';
 
 export async function getProfile(): Promise<ProfileType> {
   return client.fetch(
-    groq`*[_type == "profile"][0]{
+    groq`*[_type == "profile"][0] {
       _id,
       _updatedAt,
       fullName,
@@ -18,7 +18,8 @@ export async function getProfile(): Promise<ProfileType> {
       email,
       "resumeURL": resumeURL.asset->url,
       socialLinks,
-      skills
+      skills,
+      "jobs": jobs[] | order(date.start desc)
     }`,
   );
 }

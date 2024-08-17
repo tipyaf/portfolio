@@ -9,17 +9,21 @@ interface AboutProps {
   fullBio: FullBio;
   youtubeId: string;
   socialLinksData: SocialLinks[];
+  email: string;
 }
 
-export default function AboutSection({ youtubeId, fullBio, socialLinksData }: AboutProps) {
+export default function AboutSection({ youtubeId, fullBio, socialLinksData, email }: AboutProps) {
   return (
-    <section id="about" className="section-container relative bg-secondary">
-      <LinksHeaderSection socialLinksData={socialLinksData} />
+    <section
+      id="about"
+      className="section-container relative rounded-b-3xl bg-gradient-to-br from-secondary to-white"
+    >
+      <LinksHeaderSection email={email} socialLinksData={socialLinksData} />
       <h2 className="heading text-tertiary">About me</h2>
       <div className="body flex justify-center">
-        <div className="max-w-[500px] items-center justify-center gap-6 rounded-2xl border border-gray-200 bg-white/50 px-5 py-4 text-tertiary shadow backdrop-blur-lg">
-          {youtubeId && (
-            <div className="w-full overflow-hidden">
+        <div className="relative max-w-[500px] items-center justify-center gap-6 rounded-2xl px-5 py-4 text-tertiary">
+          {!!youtubeId && (
+            <div className="w-full overflow-hidden rounded-2xl">
               <YouTube className="youtubeContainer" videoId={youtubeId}></YouTube>
             </div>
           )}

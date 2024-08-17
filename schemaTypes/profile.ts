@@ -142,6 +142,85 @@ const profile = {
       description: 'Add a list of skills',
       of: [{ type: 'string' }],
     }),
+    defineField({
+      name: 'jobs',
+      type: 'array',
+      of: [
+        {
+          name: 'job',
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'company',
+              title: 'company',
+              type: 'object',
+              fields: [
+                defineField({
+                  name: 'name',
+                  title: 'Name',
+                  type: 'string',
+                  validation: (rule) => rule.required(),
+                }),
+                defineField({ name: 'url', title: 'URL', type: 'url' }),
+              ],
+            }),
+            defineField({
+              name: 'location',
+              title: 'Location',
+              type: 'string',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'date',
+              title: 'Date',
+              type: 'object',
+              fields: [
+                defineField({
+                  name: 'start',
+                  title: 'Start',
+                  type: 'date',
+                  validation: (rule) => rule.required(),
+                }),
+                defineField({
+                  name: 'end',
+                  title: 'End',
+                  type: 'date',
+                }),
+                defineField({ name: 'present', title: 'Present', type: 'boolean' }),
+              ],
+              options: {
+                columns: 3,
+              },
+            }),
+            defineField({
+              name: 'role',
+              title: 'Role',
+              type: 'string',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'jobType',
+              title: 'Job Type',
+              type: 'string',
+              options: {
+                list: ['full-time', 'internship', 'part-time'],
+              },
+            }),
+            defineField({
+              name: 'description',
+              title: 'Job description',
+              type: 'array',
+              of: [{ type: 'block' }],
+            }),
+          ],
+          preview: {
+            select: {
+              title: 'company.name',
+            },
+          },
+        },
+      ],
+    }),
   ],
 };
 

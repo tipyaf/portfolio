@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { HTMLAttributeAnchorTarget, ReactNode } from 'react';
 
 interface ButtonProps extends IButton {
-  children: ReactNode;
+  children?: ReactNode;
   href?: string;
   target?: HTMLAttributeAnchorTarget | undefined;
   download?: boolean;
@@ -22,26 +22,26 @@ export default function Button({
   download = false,
 }: ButtonProps) {
   const classStyle = `btn ${className}`;
-  const iconClasStyle = 'mr-2 inline';
+  const iconClasStyle = `${children ? 'mr-2 ' : ' '}inline`;
   const scale = 0.85;
   const MotionLink = motion(Link);
 
   const link = download ? (
     <motion.a href={`${href}?dl=`} whileTap={{ scale }} className={className}>
       {Icon && <Icon className={iconClasStyle} />}
-      {children}
+      {children && children}
     </motion.a>
   ) : (
     <MotionLink href={href} whileTap={{ scale }} className={className} target={target}>
       {Icon && <Icon className={iconClasStyle} />}
-      {children}
+      {children && children}
     </MotionLink>
   );
 
   const button = (
     <motion.button onClick={onClick} whileTap={{ scale }} className={classStyle}>
       {Icon && <Icon className={iconClasStyle} />}
-      {children}
+      {children && children}
     </motion.button>
   );
 
