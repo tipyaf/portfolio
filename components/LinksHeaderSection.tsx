@@ -1,11 +1,11 @@
 import Button from '@/components/utils/Button';
 import { SocialNetworkIconMap } from '@/constants/social-network-icon-map';
-import { SocialLinks } from '@/types/server';
+import { SocialLink } from '@/types/server';
 import { SiMinutemailer } from 'react-icons/si';
 
 interface LinksHeaderSectionProps {
-  socialLinksData: SocialLinks[];
-  email: string;
+  socialLinksData: SocialLink[];
+  email?: string;
 }
 
 export function LinksHeaderSection({ socialLinksData, email }: LinksHeaderSectionProps) {

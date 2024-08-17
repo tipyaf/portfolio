@@ -16,14 +16,14 @@ export type ProfileType = {
   readonly fullBio: FullBio;
   readonly location: string;
   readonly resumeURL: string;
-  readonly socialLinks: SocialLinks[];
+  readonly socialLinks: SocialLink[];
   readonly skills: string[];
   readonly jobs: Job[];
 };
 
 // todo: move to clean
 export type FullBio = { readonly title: string; readonly bio: PortableTextBlock[] };
-export type SocialLinks = { readonly name: string; url: string; code: SocialLinkCode };
+export type SocialLink = { readonly name: string; url: string; code: SocialLinkCode };
 
 export enum SocialLinkCode {
   LKIN = 'LKIN',

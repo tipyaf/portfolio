@@ -1,6 +1,8 @@
 import AboutSection from '@/components/AboutSection';
+import GetInTouchSection from '@/components/GetInTouchSection';
 import HomeSection from '@/components/HomeSection';
 import NavBar from '@/components/nav-bar/NavBar';
+import Button from '@/components/utils/Button';
 import WorkHistorySection from '@/components/WorkHistorySection';
 import { getProfile } from '@/sanity/sanity.query';
 import { ProfileType } from '@/types/server';
@@ -24,8 +26,14 @@ export default async function Page() {
           jobs={profile.jobs}
           socialLinksData={profile.socialLinks}
         />
+        <GetInTouchSection email={profile.email} socialLinks={profile.socialLinks} />
       </main>
-      <footer>footer</footer>
+      <footer className="text bg-tertiary p-6 text-center text-sm font-light text-white">
+        {new Date().getFullYear()} - Made with ❤️ and{' '}
+        <Button className="underline underline-offset-2" href="https://nextjs.org/" target="_blank">
+          Next JS
+        </Button>
+      </footer>
     </>
   );
 }

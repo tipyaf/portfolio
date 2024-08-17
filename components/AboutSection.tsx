@@ -1,14 +1,14 @@
 'use client';
 
 import { LinksHeaderSection } from '@/components/LinksHeaderSection';
-import { FullBio, SocialLinks } from '@/types/server';
+import { FullBio, SocialLink } from '@/types/server';
 import { PortableText } from '@portabletext/react';
 import YouTube from 'react-youtube';
 
 interface AboutProps {
   fullBio: FullBio;
   youtubeId: string;
-  socialLinksData: SocialLinks[];
+  socialLinksData: SocialLink[];
   email: string;
 }
 
