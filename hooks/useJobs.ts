@@ -1,4 +1,4 @@
-import { Job } from '@/types/server';
+import { Job } from '@/types/server/job.model';
 
 export function useJobs(jobs: Job[], locale = 'en'): Job[] {
   const formatDate = (date?: string) => {

@@ -1,6 +1,6 @@
 import Button from '@/components/utils/Button';
 import { SocialNetworkIconMap } from '@/constants/social-network-icon-map';
-import { SocialLink } from '@/types/server';
+import { SocialLink } from '@/types/server/social-link.model';
 import { SiMinutemailer } from 'react-icons/si';
 
 interface LinksHeaderSectionProps {
@@ -22,7 +22,7 @@ export function LinksHeaderSection({ socialLinksData, email }: LinksHeaderSectio
     },
   ];
   return (
-    <ul className="absolute left-0 top-3 flex w-screen justify-center font-bold text-current sm:justify-end">
+    <ul className="absolute bottom-3 left-0 flex w-screen justify-center font-bold text-current sm:justify-end">
       {socialLinks.map((link, i) => (
         <li
           key={i}
