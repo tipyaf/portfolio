@@ -221,6 +221,68 @@ const profile = {
         },
       ],
     }),
+    defineField({
+      name: 'projects',
+      title: 'Projects',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          name: 'project',
+          title: 'project',
+          fields: [
+            defineField({
+              name: 'name',
+              title: 'Title',
+              type: 'string',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({ name: 'url', title: 'URL', type: 'url' }),
+            defineField({
+              name: 'image',
+              title: 'image',
+              type: 'image',
+              options: { hotspot: true },
+              fields: [
+                defineField({
+                  name: 'alt',
+                  title: 'Alt',
+                  type: 'string',
+                  validation: (rule) => rule.required(),
+                }),
+              ],
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'description',
+              title: 'Description',
+              type: 'array',
+              of: [{ type: 'block' }],
+            }),
+            defineField({
+              name: 'image2',
+              title: 'image2',
+              type: 'image',
+              options: { hotspot: true },
+              fields: [
+                defineField({
+                  name: 'alt',
+                  title: 'Alt',
+                  type: 'string',
+                  validation: (rule) => rule.required(),
+                }),
+              ],
+            }),
+            defineField({
+              name: 'technos',
+              title: 'Technos',
+              type: 'array',
+              of: [{ type: 'string' }],
+            }),
+          ],
+        },
+      ],
+    }),
   ],
 };
 

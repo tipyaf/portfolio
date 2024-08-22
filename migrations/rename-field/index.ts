@@ -1,4 +1,4 @@
-import { setIfMissing, unset } from 'sanity';
+import { setIfMissing } from 'sanity';
 import { at, defineMigration } from 'sanity/migrate';
 
 // to run this:
@@ -10,7 +10,7 @@ export default defineMigration({
 
   migrate: {
     document(doc) {
-      return [at('jobs', setIfMissing(doc.jobs)), at('oldNameXX', unset())];
+      return [at('projects', setIfMissing([]))];
     },
   },
 });
