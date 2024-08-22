@@ -22,25 +22,44 @@ export default function Button({
   download = false,
 }: ButtonProps) {
   const classStyle = `btn ${className}`;
-  const iconClasStyle = `${children ? 'mr-2 ' : ' '}inline`;
+  const iconClassStyle = `${children ? 'mr-2 ' : ' '} inline`;
   const scale = 0.85;
   const MotionLink = motion(Link);
 
   const link = download ? (
-    <motion.a href={`${href}?dl=`} whileTap={{ scale }} className={className}>
-      {Icon && <Icon className={iconClasStyle} />}
+    <motion.a
+      href={`${href}?dl=`}
+      whileTap={{ scale }}
+      className={className}
+      role="link"
+      aria-label="link"
+    >
+      {Icon && <Icon className={iconClassStyle} />}
       {children && children}
     </motion.a>
   ) : (
-    <MotionLink href={href} whileTap={{ scale }} className={className} target={target}>
-      {Icon && <Icon className={iconClasStyle} />}
+    <MotionLink
+      href={href}
+      whileTap={{ scale }}
+      className={className}
+      target={target}
+      role="link"
+      aria-label="link"
+    >
+      {Icon && <Icon className={iconClassStyle} />}
       {children && children}
     </MotionLink>
   );
 
   const button = (
-    <motion.button onClick={onClick} whileTap={{ scale }} className={classStyle}>
-      {Icon && <Icon className={iconClasStyle} />}
+    <motion.button
+      onClick={onClick}
+      whileTap={{ scale }}
+      className={classStyle}
+      role="button"
+      aria-label="button"
+    >
+      {Icon && <Icon className={iconClassStyle} />}
       {children && children}
     </motion.button>
   );

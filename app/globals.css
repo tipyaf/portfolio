@@ -23,6 +23,8 @@ html {
 }
 
 body {
+    @apply font-sans;
+
     color: rgb(var(--foreground-rgb));
     background: linear-gradient(
             to bottom,
@@ -38,6 +40,10 @@ body {
 
 .styled-list ul li {
     @apply pl-3 ml-3;
+}
+
+.styled-link a {
+    @apply underline;
 }
 
 .youtubeContainer iframe {

@@ -1,4 +1,4 @@
-import { SocialLinkCode } from '@/types/server';
+import { SocialLinkCode } from '@/types/server/social-link.model';
 import { IconType } from 'react-icons';
 import { FaGithub, FaLinkedin } from 'react-icons/fa6';
 

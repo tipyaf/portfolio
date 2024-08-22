@@ -28,7 +28,7 @@ export default function Popover({ children, className, label, icon }: Popover) {
       `#${popoverContainerId}`,
       {
         width: size,
-        height: open ? size : 0,
+        height: open ? 'auto' : 0,
         opacity: open ? 1 : 0,
       },
       {
