@@ -11,7 +11,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <div className="shadow-secondary-1 dark:bg-surface-dark block rounded-lg bg-white">
+    <div className="shadow-secondary-1 dark:bg-surface-dark block rounded-lg bg-white dark:bg-tertiary">
       <Button className="w-full" href={project.url} target="_blank">
         <Image
           className="w-full rounded-t-lg"
@@ -30,7 +30,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           {project.name}
         </Button>
 
-        <div className="styled-link hidden md:block">
+        <div className="styled-link hidden text-justify md:block">
           <PortableText value={project.description} />
         </div>
       </div>

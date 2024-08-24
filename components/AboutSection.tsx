@@ -34,7 +34,7 @@ export default function AboutSection({ youtubeId, fullBio, email, socialLinks }:
     <section id="about" className="section-container">
       <motion.div initial="offscreen" whileInView="onscreen" viewport={{ once: true, amount: 0.3 }}>
         <motion.div
-          className="mb-4 flex h-full flex-col items-center rounded-3xl bg-secondary/50 px-3 py-2 shadow-xl backdrop-blur-2xl dark:bg-white"
+          className="mb-4 flex h-full flex-col items-center rounded-3xl bg-secondary/50 px-5 py-4 shadow-xl backdrop-blur-2xl dark:bg-white"
           variants={cardVariants}
         >
           <h2 className="heading self-start text-tertiary">About me</h2>
@@ -46,7 +46,9 @@ export default function AboutSection({ youtubeId, fullBio, email, socialLinks }:
             )}
             <article className="mt-3 w-full text-justify font-mono">
               <h3 className="font-sans text-2xl font-medium text-primary">{fullBio.title}</h3>
-              <PortableText value={fullBio.bio} />
+              <div className="mt-2 text-justify">
+                <PortableText value={fullBio.bio} />
+              </div>
             </article>
           </div>
         </motion.div>
