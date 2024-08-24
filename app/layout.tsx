@@ -1,7 +1,6 @@
 import { getProfile } from '@/sanity/sanity.query';
-import { GeneratedMetadataParamsProps } from '@/types/server/genarated-metadata-params-props';
 import { ProfileType } from '@/types/server/profile.model';
-import type { Metadata, ResolvingMetadata } from 'next';
+import type { Metadata } from 'next';
 import { Cormorant, Raleway } from 'next/font/google';
 import './globals.css';
 
@@ -16,26 +15,19 @@ const cormorant = Cormorant({
   variable: '--font-cormorant',
 });
 
-export async function generateMetadata(
-  _: GeneratedMetadataParamsProps,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
-  // fetch data
+export async function generateMetadata(): Promise<Metadata> {
   const profile: ProfileType = await getProfile();
-
-  // optionally access and extend (rather than replace) parent metadata
-  const previousImages = (await parent).openGraph?.images || [];
 
   return {
     title: profile.fullName,
     description: profile.shortBio,
     openGraph: {
-      images: [profile.profileImage.image, ...previousImages],
+      images: [profile.profileImage.image],
     },
   };
 }
 
-export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body className={`${raleway.className} ${cormorant.variable}`}>{children}</body>
