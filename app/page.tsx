@@ -11,6 +11,18 @@ import { ProfileType } from '@/types/server/profile.model';
 
 export default async function Page() {
   const profile: ProfileType = await getProfile();
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    url: process.env.NEXT_PUBLIC_BASE_URL,
+    name: `${profile.fullName} Portfolio`,
+    image: profile.profileImage.image,
+    description: profile.fullBio,
+    citation: profile.shortBio,
+    about: `${profile.fullName}, ${profile.role} and their skills: ${profile.skills.join(',')}`,
+  };
+
   return (
     <>
       <main className="flex min-h-screen flex-col items-center justify-between">
@@ -38,6 +50,10 @@ export default async function Page() {
           Next JS
         </Button>
       </footer>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </>
   );
 }
