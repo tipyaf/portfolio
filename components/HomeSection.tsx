@@ -65,11 +65,7 @@ export default function HomeSection({
             <PortableText value={headline} />
           </div>
           <div className="mt-20 flex w-full justify-center">
-            <Button
-              trackId="btn:home:learMore"
-              className="rounded-full bg-tertiary px-10 py-4 text-xl font-bold"
-              href="#about"
-            >
+            <Button className="rounded-full bg-tertiary px-10 py-4 text-xl font-bold" href="#about">
               Learn more
             </Button>
           </div>

@@ -19,7 +19,7 @@ export default function NavBar({ imageUrl, resumeUrl }: NavBarProps) {
       className={`${css.navBar} pointer-events-none fixed left-0 top-0 z-30 flex w-full items-center justify-center p-4`}
     >
       <nav className="navBar pointer-events-auto flex w-full max-w-[550px] items-center justify-between rounded-full border border-white/20 bg-white/50 px-4 py-1 backdrop-blur-lg dark:bg-black/50">
-        <Button trackId="btn:nav:home" href="/">
+        <Button href="/">
           <AnimatedPortrait src={imageUrl} imageSize={40} />
         </Button>
         <Popover label="Menu" icon={BsCaretDown} className="dark:text-white">
