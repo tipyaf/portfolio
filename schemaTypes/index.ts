@@ -1,3 +1,3 @@
-import profile from "./profile";
+import profile from './profile';
 
 export const schemaTypes = [profile];

@@ -1,0 +1,24 @@
+.navBar {
+    animation: fadeInDown 3s ease-out;
+    transition: width ease-in-out;
+    z-index: 1;
+}
+
+.navBar.initial {
+    @apply text-tertiary;
+}
+
+.navBar.scrolled {
+    @apply max-w-[600px];
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
