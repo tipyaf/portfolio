@@ -1,5 +1,6 @@
 import { getProfile } from '@/sanity/sanity.query';
 import { ProfileType } from '@/types/server/profile.model';
+import { Analytics } from '@vercel/analytics/next';
 import type { Metadata } from 'next';
 import { Cormorant, Raleway } from 'next/font/google';
 import './globals.css';
@@ -30,7 +31,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body className={`${raleway.className} ${cormorant.variable}`}>{children}</body>
+      <body className={`${raleway.className} ${cormorant.variable}`}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

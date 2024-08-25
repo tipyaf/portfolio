@@ -1,6 +1,7 @@
 'use client';
 
 import { IButton } from '@/types/client/button.model';
+import { track } from '@vercel/analytics';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { HTMLAttributeAnchorTarget, ReactNode } from 'react';
@@ -10,6 +11,7 @@ interface ButtonProps extends IButton {
   href?: string;
   target?: HTMLAttributeAnchorTarget | undefined;
   download?: boolean;
+  trackId?: string;
 }
 
 export default function Button({
@@ -20,6 +22,7 @@ export default function Button({
   href = '',
   target,
   download = false,
+  trackId,
 }: ButtonProps) {
   const classStyle = `btn ${className}`;
   const iconClassStyle = `${children ? 'mr-2 ' : ' '} inline`;
@@ -28,6 +31,7 @@ export default function Button({
 
   const link = download ? (
     <motion.a
+      onClick={() => track(`downlaod:${href}`)}
       href={`${href}?dl=`}
       whileTap={{ scale }}
       className={className}
@@ -39,6 +43,7 @@ export default function Button({
     </motion.a>
   ) : (
     <MotionLink
+      onClick={() => track(`link:${href}`)}
       href={href}
       whileTap={{ scale }}
       className={className}
@@ -53,7 +58,12 @@ export default function Button({
 
   const button = (
     <motion.button
-      onClick={onClick}
+      onClick={(e) => {
+        onClick && onClick();
+        if (!!trackId) {
+          track(`btn:${trackId}`);
+        }
+      }}
       whileTap={{ scale }}
       className={classStyle}
       role="button"
