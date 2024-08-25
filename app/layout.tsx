@@ -1,19 +1,39 @@
-import { Manrope } from "next/font/google";
-import "./globals.css";
-import NavBar from "@/app/components/nav-bar/NavBar";
+import { getProfile } from '@/sanity/sanity.query';
+import { ProfileType } from '@/types/server/profile.model';
+import { Analytics } from '@vercel/analytics/next';
+import type { Metadata } from 'next';
+import { Cormorant, Raleway } from 'next/font/google';
+import './globals.css';
 
-const manrope = Manrope({ subsets: ["latin"] })
-
-export default function RootLayout({
-  children,
-}: Readonly<{
+interface RootLayoutProps {
   children: React.ReactNode;
-}>) {
+}
+
+const raleway = Raleway({ subsets: ['latin'], variable: '--font-raleway' });
+const cormorant = Cormorant({
+  weight: ['400', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-cormorant',
+});
+
+export async function generateMetadata(): Promise<Metadata> {
+  const profile: ProfileType = await getProfile();
+
+  return {
+    title: profile.fullName,
+    description: profile.shortBio,
+    openGraph: {
+      images: [profile.profileImage.image],
+    },
+  };
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body className={manrope.className}>
-      <NavBar />
-      {children}
+      <body className={`${raleway.className} ${cormorant.variable}`}>
+        {children}
+        <Analytics />
       </body>
     </html>
   );
