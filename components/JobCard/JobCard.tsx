@@ -2,7 +2,6 @@
 import Button from '@/components/utils/Button';
 import { Job } from '@/types/server/job.model';
 import { PortableText } from '@portabletext/react';
-import { useRef } from 'react';
 import { BiPlus } from 'react-icons/bi';
 
 interface JobCardProps {
@@ -11,10 +10,8 @@ interface JobCardProps {
 }
 
 export default function JobCard({ job, showDescription = true }: JobCardProps) {
-  const ref = useRef(null);
-
   return (
-    <div className="relative w-full rounded-lg bg-white p-4 shadow-lg dark:bg-black">
+    <div className="relative w-full rounded-lg bg-white p-4 shadow-lg dark:bg-tertiary">
       <div className="text-xl font-bold">{job.role}</div>
       {job.company?.url ? (
         <Button className="hover:underline" href={job.company.url} target={'_blank'}>

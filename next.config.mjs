@@ -14,6 +14,12 @@ const nextConfig = {
         port: '',
         pathname: `/images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/${process.env.NEXT_PUBLIC_SANITY_DATASET}/**`,
       },
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
+        port: '',
+        pathname: `/vi/**`,
+      },
     ],
   },
 };

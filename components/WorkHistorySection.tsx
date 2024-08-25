@@ -2,9 +2,10 @@
 
 import JobCard from '@/components/JobCard/JobCard';
 import Button from '@/components/utils/Button';
+import Modal from '@/components/utils/Modal';
 import { useJobs } from '@/hooks/useJobs';
 import { Job } from '@/types/server/job.model';
-import { AnimatePresence, motion, Variants } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { useState } from 'react';
 import { RxCross2 } from 'react-icons/rx';
 
@@ -59,37 +60,30 @@ export default function WorkHistorySection({ jobs }: WorkHistoryProps) {
           ))}
         </div>
 
-        <AnimatePresence>
-          {selectedId && (
-            <motion.div
-              className="fixed inset-0 flex items-center justify-center bg-black/50 px-7 backdrop-blur-lg"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              {jobsViews.map(
-                (item) =>
-                  item._key === selectedId && (
-                    <motion.div
-                      className="w-full"
-                      layoutId={`card-container-${item._key}`}
-                      key={item._key}
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0.8, opacity: 0 }}
-                    >
-                      <Button
-                        onClick={() => setSelectedId('')}
-                        icon={RxCross2}
-                        className="fixed right-2 top-20 rounded-full border-[1px] bg-white px-3 py-2 text-tertiary shadow transition-colors duration-300"
-                      ></Button>
-                      <JobCard job={item} />
-                    </motion.div>
-                  ),
-              )}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {selectedId && (
+          <Modal>
+            {jobsViews.map(
+              (item) =>
+                item._key === selectedId && (
+                  <motion.div
+                    className="relative max-h-[70vh] w-full overflow-y-auto rounded-lg"
+                    layoutId={`card-container-${item._key}`}
+                    key={item._key}
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.8, opacity: 0 }}
+                  >
+                    <Button
+                      onClick={() => setSelectedId('')}
+                      icon={RxCross2}
+                      className="fixed right-2 top-10 rounded-full border-[1px] bg-white px-3 py-2 text-tertiary shadow transition-colors duration-300"
+                    ></Button>
+                    <JobCard job={item} />
+                  </motion.div>
+                ),
+            )}
+          </Modal>
+        )}
       </motion.div>
     </motion.section>
   );
