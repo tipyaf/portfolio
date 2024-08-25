@@ -27,12 +27,12 @@ export default function HomeSection({
   const experience = useCalculateYearsFromDate('2016-09-01');
   const experienceText = `with ${experience} years of experience`;
   return (
-    <section className="bg-gradient-to-tb relative flex h-screen max-h-screen min-h-[720px] w-full flex-col overflow-hidden bg-gradient-to-b from-primary via-50% to-transparent">
+    <section className="bg-gradient-to-tb relative flex h-screen max-h-screen w-full flex-col overflow-hidden bg-gradient-to-b from-primary via-50% to-transparent">
       {/*background shapes*/}
       <div className="absolute left-1/2 top-0 z-0 grid h-screen w-[120%] min-w-[900px] max-w-[2048px] -translate-x-1/2 grid-cols-1 grid-rows-1 lg:-top-0">
         <Image
           className="rotate-shapes h-full w-full"
-          src="/sweety-shapes.svg"
+          src="/assets/sweety-shapes.svg"
           alt="background shapes"
           width={300}
           height={300}

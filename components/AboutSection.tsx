@@ -1,11 +1,11 @@
 'use client';
 
 import { LinksHeaderSection } from '@/components/LinksHeaderSection';
+import LazyYoutube from '@/components/utils/lazy-youtube/LazyYoutube';
 import { FullBio } from '@/types/server/full-bio';
 import { SocialLink } from '@/types/server/social-link.model';
 import { PortableText } from '@portabletext/react';
 import { motion, Variants } from 'framer-motion';
-import YouTube from 'react-youtube';
 
 interface AboutProps {
   fullBio: FullBio;
@@ -31,17 +31,17 @@ export default function AboutSection({ youtubeId, fullBio, email, socialLinks }:
     },
   };
   return (
-    <section id="about" className="section-container">
+    <section id="about" className="section-container flex items-center justify-center">
       <motion.div initial="offscreen" whileInView="onscreen" viewport={{ once: true, amount: 0.3 }}>
         <motion.div
-          className="mb-4 flex h-full flex-col items-center rounded-3xl bg-secondary/50 px-5 py-4 shadow-xl backdrop-blur-2xl dark:bg-white"
+          className="max-w mb-4 flex h-full max-w-7xl flex-col items-center rounded-3xl bg-secondary/50 px-5 py-4 shadow-xl backdrop-blur-2xl dark:bg-white"
           variants={cardVariants}
         >
           <h2 className="heading self-start text-tertiary">About me</h2>
           <div className="relative flex max-w-[1000px] flex-col items-center justify-center gap-6 rounded px-5 py-4 text-tertiary">
             {!!youtubeId && (
               <div className="w-full overflow-hidden rounded-2xl">
-                <YouTube className="youtubeContainer" videoId={youtubeId}></YouTube>
+                <LazyYoutube youtubeId={youtubeId}></LazyYoutube>
               </div>
             )}
             <article className="mt-3 w-full text-justify font-mono">
