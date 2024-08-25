@@ -30,6 +30,7 @@ export default function JobCard({ job, showDescription = true }: JobCardProps) {
       <div className="flex justify-end pt-2">
         {!showDescription && (
           <Button
+            trackId={`btn:job:${job.company}:openModal`}
             icon={BiPlus}
             className="rounded-full border-[1px] px-3 py-2 shadow transition-colors duration-300"
           ></Button>

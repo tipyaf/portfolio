@@ -48,7 +48,12 @@ export default function Popover({ children, className, label, icon }: Popover) {
   }, [open, animate, staggerList]);
   return (
     <div ref={scope} className="relative">
-      <Button onClick={() => setOpen(!open)} icon={icon} className={className}>
+      <Button
+        trackId="btn:nav:openMenu"
+        onClick={() => setOpen(!open)}
+        icon={icon}
+        className={className}
+      >
         {label}
       </Button>
       <div

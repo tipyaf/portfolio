@@ -74,6 +74,7 @@ export default function WorkHistorySection({ jobs }: WorkHistoryProps) {
                     exit={{ scale: 0.8, opacity: 0 }}
                   >
                     <Button
+                      trackId={`btn:job:${item.company}:closeModal`}
                       onClick={() => setSelectedId('')}
                       icon={RxCross2}
                       className="fixed right-2 top-10 rounded-full border-[1px] bg-white px-3 py-2 text-tertiary shadow transition-colors duration-300"
