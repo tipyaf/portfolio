@@ -11,7 +11,7 @@ interface ProjectsProps {
 export default function ProjectsSection({ projects }: ProjectsProps) {
   return (
     <section id="projects" className="section-container flex flex-col">
-      <h2 className="heading self-start text-white">Projects</h2>
+      <h2 className="heading self-start text-white">Public Projects</h2>
 
       <ul className="flex w-full flex-col justify-between gap-28">
         {projects.map((item, i) => (

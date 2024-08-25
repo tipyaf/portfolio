@@ -8,7 +8,7 @@ export default function MenuList() {
       href: '/#about',
     },
     {
-      label: 'Projects',
+      label: 'Public projects',
       href: '/#projects',
     },
     {
