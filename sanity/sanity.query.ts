@@ -1,10 +1,8 @@
+import { sanityFetch } from '@/sanity/utils/sanity-fetch';
 import { ProfileType } from '@/types/server/profile.model';
 import { groq } from 'next-sanity';
-import client from './sanity.client';
 
-export async function getProfile(): Promise<ProfileType> {
-  return client.fetch(
-    groq`*[_type == "profile"][0] {
+export const PROFILE_QUERY: string = groq`*[_type == "profile"][0] {
       _id,
       _updatedAt,
       fullName,
@@ -27,6 +25,8 @@ export async function getProfile(): Promise<ProfileType> {
           "image": asset->url
         }
       }
-    }`,
-  );
+    }`;
+
+export async function getProfile(): Promise<ProfileType> {
+  return sanityFetch({ query: PROFILE_QUERY });
 }

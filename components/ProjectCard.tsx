@@ -2,24 +2,52 @@
 
 import Button from '@/components/utils/Button';
 import { Project } from '@/types/server/project.model';
+import { urlFor } from '@/utils/url-for';
 import { PortableText } from '@portabletext/react';
-import { Image } from 'next-sanity/image';
+import { useInView } from 'framer-motion';
+import { Image as ImageComponent } from 'next-sanity/image';
+import { useEffect, useRef, useState } from 'react';
 
 interface ProjectCardProps {
   project: Project;
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
+  const [highResLoaded, setHighResLoaded] = useState(false);
+  const cardRef = useRef<HTMLImageElement>(null);
+  const inView = useInView(cardRef);
+  const imageWidth = 1920;
+  const imageHeight = 1080;
+  useEffect(() => {
+    const img = new Image(imageWidth, imageHeight);
+    img.src = urlFor(project.image.image).width(imageWidth).fit('min').url();
+    img.onload = () => setHighResLoaded(true);
+  }, [project.image.image, inView]);
   return (
-    <div className="shadow-secondary-1 dark:bg-surface-dark block rounded-lg bg-white dark:bg-tertiary">
+    <div
+      ref={cardRef}
+      className="shadow-secondary-1 dark:bg-surface-dark block rounded-lg bg-white dark:bg-tertiary"
+    >
       <Button className="w-full" href={project.url} target="_blank">
-        <Image
-          className="w-full rounded-t-lg"
-          src={project.image.image}
-          alt={project.image.alt}
-          width={500}
-          height={200}
-        />
+        {highResLoaded ? (
+          <ImageComponent
+            className="w-full rounded-t-lg"
+            src={urlFor(project.image.image).width(imageWidth).fit('max').url()}
+            alt={project.image.alt}
+            width={imageWidth}
+            height={1080}
+            loading="lazy"
+          />
+        ) : (
+          <ImageComponent
+            className="w-full rounded-t-lg"
+            src={urlFor(project.image.image).width(imageWidth).fit('max').url()}
+            alt={project.image.alt}
+            width={540}
+            height={320}
+            loading="lazy"
+          />
+        )}
       </Button>
       <div className="text-surface p-6 dark:text-white">
         <Button

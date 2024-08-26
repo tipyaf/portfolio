@@ -3,9 +3,17 @@ import { useEffect, useState } from 'react';
 
 interface LazyYoutubeProps {
   youtubeId: string;
+  thumbnailWidth?: number;
+  thumbnailHeight?: number;
+  thumbnailQuality?: number;
 }
 
-export default function LazyYoutube({ youtubeId }: LazyYoutubeProps): JSX.Element {
+export default function LazyYoutube({
+  youtubeId,
+  thumbnailWidth = 960,
+  thumbnailHeight = 540,
+  thumbnailQuality = 100,
+}: LazyYoutubeProps): JSX.Element {
   const [imageClicked, setImageClicked] = useState(false);
 
   const onThumbnailClick = () => {
@@ -26,9 +34,10 @@ export default function LazyYoutube({ youtubeId }: LazyYoutubeProps): JSX.Elemen
             className="w-full"
             src={`https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`}
             alt="yt thumbnail"
-            priority
-            width={400}
-            height={400}
+            width={thumbnailWidth}
+            height={thumbnailHeight}
+            quality={thumbnailQuality}
+            loading="lazy"
           />
           <Image
             id="play-button"
@@ -37,6 +46,7 @@ export default function LazyYoutube({ youtubeId }: LazyYoutubeProps): JSX.Elemen
             alt="play button"
             width={80}
             height={80}
+            loading="lazy"
           />
         </>
       ) : (
