@@ -27,7 +27,7 @@ export default function ProjectsSection({ projects }: ProjectsProps) {
               rotate: 0,
               width: '100%',
               transition: {
-                duration: 0.5,
+                duration: 0.3,
               },
             }}
             whileInView={{
