@@ -37,7 +37,7 @@ export default function WorkHistorySection({ jobs }: WorkHistoryProps) {
       id="workHistory"
       initial="offscreen"
       whileInView="onscreen"
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.4 }}
       variants={sectionVariants}
       className="section-container relative overflow-y-hidden bg-gradient-to-b from-transparent to-secondary dark:to-white"
     >
