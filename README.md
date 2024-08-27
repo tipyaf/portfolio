@@ -1,4 +1,4 @@
-# 🌟 Portfolio v1.0.1 🚀
+# 🌟 Portfolio v1.0.2 🚀
 
 Welcome to **Portfolio v1**, a personal project built with [**Next.js**](https://nextjs.org/) and [**Sanity**](https://www.sanity.io/)! This repository showcases my developer portfolio, highlighting projects, skills, and more. Dive in and explore!
 
