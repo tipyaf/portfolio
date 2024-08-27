@@ -54,7 +54,7 @@ export default function LazyYoutube({
           allowFullScreen
           src={
             imageClicked
-              ? `https://www.youtube.com/embed/${youtubeId}?rel=0&showinfo=0&autoplay=1`
+              ? `https://www.youtube.com/embed/${youtubeId}?rel=0&showinfo=0&autoplay=1&mute=1`
               : ''
           }
           title="youtube video"
