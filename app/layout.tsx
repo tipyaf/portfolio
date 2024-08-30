@@ -20,10 +20,13 @@ export async function generateMetadata(): Promise<Metadata> {
   const profile: ProfileType = await getProfile();
 
   return {
-    title: profile.fullName,
+    title: `Portfolio of ${profile.fullName} | ${profile.role}`,
     description: profile.shortBio,
     openGraph: {
-      images: [profile.profileImage.image],
+      images: [`${profile.profileImage.image}?w=150`],
+    },
+    verification: {
+      google: 'CpvTDgPE1Hdu5K3R4fYzYJxuN8dwjhzsNUXEQ985bY0',
     },
   };
 }

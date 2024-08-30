@@ -42,12 +42,6 @@ export default function HomeSection({
       {/*content*/}
       <div className="flex h-full p-4">
         <div className="relative flex w-full flex-1 flex-col items-center justify-center gap-6 text-center text-white">
-          {/*only SEO*/}
-          <h1 className="sr-only">
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            I'm {userName} and I'm a <strong>{role}</strong> {experienceText}
-          </h1>
-
           <div>
             <h1 className="max-w-5xl text-5xl">
               <AnimText text={`Hi, I'm ${userName} !`} duration={2} />
