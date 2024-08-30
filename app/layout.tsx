@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: `Portfolio of ${profile.fullName} | ${profile.role}`,
     description: profile.shortBio,
     openGraph: {
-      images: [`${profile.profileImage.image}?w=150`],
+      images: [profile.profileImage.image],
     },
     verification: {
       google: 'CpvTDgPE1Hdu5K3R4fYzYJxuN8dwjhzsNUXEQ985bY0',
