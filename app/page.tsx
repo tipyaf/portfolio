@@ -17,7 +17,7 @@ export default async function Page() {
     '@type': 'WebSite',
     url: process.env.NEXT_PUBLIC_BASE_URL,
     name: `${profile.fullName} | ${profile.role}`,
-    image: `${profile.profileImage.image}?w=150`,
+    image: profile.profileImage.image,
     description: profile.fullBio,
     citation: profile.shortBio,
     about: `${profile.fullName}, ${profile.role} and their skills: ${profile.skills.join(',')}`,
