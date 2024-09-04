@@ -1,6 +1,7 @@
 import { getProfile } from '@/sanity/sanity.query';
 import { ProfileType } from '@/types/server/profile.model';
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import { Cormorant, Raleway } from 'next/font/google';
 import './globals.css';
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className={`${raleway.className} ${cormorant.variable}`}>
         {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
