@@ -8,6 +8,12 @@ const profile = {
   icon: BiUser,
   fields: [
     defineField({
+      name: 'language',
+      type: 'string',
+      readOnly: true,
+      hidden: true,
+    }),
+    defineField({
       name: 'fullName',
       title: 'Full Name',
       type: 'string',
@@ -32,7 +38,7 @@ const profile = {
       title: 'Profile Image',
       type: 'image',
       description: 'Upload a profile picture',
-      options: { hotspot: true },
+      options: { hotspot: true, documentInternationalization: { exclude: true } },
       fields: [
         defineField({
           name: 'alt',

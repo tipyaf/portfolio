@@ -7,10 +7,15 @@ import WorkHistorySection from '@/components/WorkHistorySection';
 import { getProfile } from '@/sanity/sanity.query';
 
 import ProjectsSection from '@/components/ProjectsSection';
+import { LanguageCode } from '@/types/server/language.enum';
 import { ProfileType } from '@/types/server/profile.model';
 
-export default async function Page() {
-  const profile: ProfileType = await getProfile();
+type PageProps = {
+  params: { lang: LanguageCode };
+};
+
+export default async function Page({ params }: PageProps) {
+  const profile: ProfileType = await getProfile(params.lang);
 
   const jsonLd = {
     '@context': 'https://schema.org',

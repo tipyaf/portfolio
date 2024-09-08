@@ -4,10 +4,11 @@ import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import { Cormorant, Raleway } from 'next/font/google';
-import './globals.css';
+import '../globals.css';
 
 interface RootLayoutProps {
   children: React.ReactNode;
+  params: { lang: string };
 }
 
 const raleway = Raleway({ subsets: ['latin'], variable: '--font-raleway' });
@@ -21,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const profile: ProfileType = await getProfile();
 
   return {
-    title: `Portfolio of ${profile.fullName} | ${profile.role}`,
+    title: `Portfolio | ${profile.fullName} | ${profile.role}`,
     description: profile.shortBio,
     openGraph: {
       images: [profile.profileImage.image],
@@ -32,9 +33,9 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children, params }: RootLayoutProps) {
   return (
-    <html lang="en">
+    <html lang={params.lang}>
       <body className={`${raleway.className} ${cormorant.variable}`}>
         {children}
         <Analytics />

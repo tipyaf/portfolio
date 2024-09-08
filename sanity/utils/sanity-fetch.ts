@@ -1,4 +1,5 @@
 import client from '@/sanity/sanity.client';
+import { LanguageCode } from '@/types/server/language.enum';
 import { type QueryParams } from 'next-sanity';
 
 export interface SanityFetchParams {
@@ -10,7 +11,7 @@ export interface SanityFetchParams {
 
 export async function sanityFetch<T>({
   query,
-  params = {},
+  params = { lang: LanguageCode.ENGLISH },
   revalidate = 60,
   tags = [],
 }: SanityFetchParams): Promise<T> {
