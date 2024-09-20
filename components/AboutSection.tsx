@@ -44,7 +44,7 @@ export default function AboutSection({ youtubeId, fullBio, email, socialLinks }:
                 <LazyYoutube youtubeId={youtubeId}></LazyYoutube>
               </div>
             )}
-            <article className="mt-3 w-full text-justify font-mono">
+            <article className="mt-3 w-full text-justify">
               <h3 className="font-sans text-2xl font-medium text-primary">{fullBio.title}</h3>
               <div className="mt-2 text-justify">
                 <PortableText value={fullBio.bio} />
