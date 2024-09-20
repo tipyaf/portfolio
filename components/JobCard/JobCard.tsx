@@ -37,7 +37,7 @@ export default function JobCard({ job, showDescription = true }: JobCardProps) {
       </div>
 
       {showDescription && (
-        <div className="styled-list mt-2 min-h-0 overflow-hidden px-2 font-mono">
+        <div className="styled-list mt-2 min-h-0 overflow-hidden px-2">
           <PortableText value={job.description} />
         </div>
       )}

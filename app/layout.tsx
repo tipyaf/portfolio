@@ -3,7 +3,7 @@ import { ProfileType } from '@/types/server/profile.model';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
-import { Cormorant, Raleway } from 'next/font/google';
+import { Raleway } from 'next/font/google';
 import './globals.css';
 
 interface RootLayoutProps {
@@ -11,11 +11,6 @@ interface RootLayoutProps {
 }
 
 const raleway = Raleway({ subsets: ['latin'], variable: '--font-raleway' });
-const cormorant = Cormorant({
-  weight: ['400', '600', '700'],
-  subsets: ['latin'],
-  variable: '--font-cormorant',
-});
 
 export async function generateMetadata(): Promise<Metadata> {
   const profile: ProfileType = await getProfile();
@@ -35,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body className={`${raleway.className} ${cormorant.variable}`}>
+      <body className={raleway.className}>
         {children}
         <Analytics />
         <SpeedInsights />

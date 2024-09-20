@@ -18,7 +18,6 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ['--font-raleway'],
-        mono: ['--font-cormorant'],
       },
       colors: {
         ...COLORS,
