@@ -6,15 +6,26 @@ import { FullBio } from '@/types/server/full-bio';
 import { SocialLink } from '@/types/server/social-link.model';
 import { PortableText } from '@portabletext/react';
 import { motion, Variants } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 interface AboutProps {
   fullBio: FullBio;
   youtubeId: string;
   email: string;
   socialLinks: SocialLink[];
+  locale: string;
 }
 
-export default function AboutSection({ youtubeId, fullBio, email, socialLinks }: AboutProps) {
+export default function AboutSection({
+  youtubeId,
+  fullBio,
+  email,
+  socialLinks,
+  locale,
+}: AboutProps) {
+  const t = useTranslations('about');
+  const tAlt = useTranslations('alt');
+  const tLinks = useTranslations('links');
   const cardVariants: Variants = {
     offscreen: {
       opacity: 0,
@@ -37,14 +48,19 @@ export default function AboutSection({ youtubeId, fullBio, email, socialLinks }:
           className="max-w mb-4 flex h-full max-w-7xl flex-col items-center rounded-3xl bg-secondary/50 px-5 py-4 shadow-xl backdrop-blur-2xl dark:bg-white"
           variants={cardVariants}
         >
-          <h2 className="heading self-start text-tertiary">About me</h2>
+          <h2 className="heading self-start text-tertiary">{t('title')}</h2>
           <div className="relative flex max-w-[1000px] flex-col items-center justify-center gap-6 rounded px-5 py-4 text-tertiary">
             {!!youtubeId && (
               <div className="w-full overflow-hidden rounded-2xl">
-                <LazyYoutube youtubeId={youtubeId}></LazyYoutube>
+                <LazyYoutube
+                  youtubeId={youtubeId}
+                  thumbnailAlt={tAlt('ytThumbnail')}
+                  playButtonAlt={tAlt('playButton')}
+                  videoTitle={tAlt('youtubeVideo')}
+                />
               </div>
             )}
-            <article className="mt-3 w-full text-justify font-mono">
+            <article className="mt-3 w-full text-justify">
               <h3 className="font-sans text-2xl font-medium text-primary">{fullBio.title}</h3>
               <div className="mt-2 text-justify">
                 <PortableText value={fullBio.bio} />
@@ -54,7 +70,12 @@ export default function AboutSection({ youtubeId, fullBio, email, socialLinks }:
         </motion.div>
       </motion.div>
 
-      <LinksHeaderSection email={email} socialLinksData={socialLinks} />
+      <LinksHeaderSection
+        email={email}
+        socialLinksData={socialLinks}
+        locale={locale}
+        mailLabel={tLinks('mail')}
+      />
     </section>
   );
 }

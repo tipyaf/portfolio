@@ -8,11 +8,14 @@ export interface Job {
   };
   readonly jobType: string;
   readonly location: string;
+  readonly location_fr?: string;
   readonly date: {
     readonly start: string;
     readonly end?: string;
     readonly present?: boolean;
   };
   readonly role: string;
+  readonly role_fr?: string;
   readonly description: PortableTextBlock[];
+  readonly description_fr?: PortableTextBlock[];
 }
