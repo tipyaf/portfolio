@@ -46,10 +46,16 @@ export default function NavBar({ imageUrl, resumeUrl, locale }: NavBarProps) {
           <Button
             href={resumeUrl}
             download={true}
-            className={`${navBtnStyle} text-xs font-semibold`}
+            className={`${navBtnStyle} text-xs font-semibold sm:hidden`}
+            icon={FiDownloadCloud}
+          />
+          <Button
+            href={resumeUrl}
+            download={true}
+            className={`${navBtnStyle} hidden text-xs font-semibold sm:flex`}
             icon={FiDownloadCloud}
           >
-            <span className="hidden sm:inline">{t('cv')}</span>
+            {t('cv')}
           </Button>
         </div>
       </nav>
