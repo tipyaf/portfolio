@@ -5,22 +5,29 @@ import { ILink } from '@/types/client/link.model';
 
 interface MenuListProps {
   items: ILink[];
+  activeHref?: string;
 }
 
-export default function MenuList({ items }: MenuListProps) {
+export default function MenuList({ items, activeHref }: MenuListProps) {
   return (
-    <ul role="menu" className="flex h-full flex-col justify-evenly">
-      {items.map((item, index) => (
-        <li
-          role="menuitem"
-          key={index}
-          className="flex h-full cursor-pointer items-center justify-center break-words p-3 text-center text-white transition-all duration-700 hover:scale-110 hover:bg-tertiary/95"
-        >
-          <Button className="w-full" href={item.href}>
-            {item.label}
-          </Button>
-        </li>
-      ))}
+    <ul role="menu" className="flex h-full flex-col">
+      {items.map((item, index) => {
+        const isActive = activeHref === item.href;
+        return (
+          <li
+            role="menuitem"
+            key={index}
+            className={`flex w-full cursor-pointer items-center gap-2 px-4 py-2.5 text-left text-sm transition-all duration-700 hover:bg-tertiary/95 ${
+              isActive ? 'font-semibold text-primary' : 'text-white/80 hover:text-white'
+            }`}
+          >
+            <Button className="w-full text-left" href={item.href}>
+              {item.label}
+            </Button>
+            {isActive && <span className="ml-auto text-xs text-primary">●</span>}
+          </li>
+        );
+      })}
     </ul>
   );
 }

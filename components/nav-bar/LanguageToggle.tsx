@@ -71,7 +71,7 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: -8 }}
             transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-            className="absolute right-0 top-[44px] z-50 min-w-[100px] overflow-hidden rounded-xl border border-white/20 bg-tertiary/90 shadow-2xl backdrop-blur-lg"
+            className="absolute right-0 top-[40px] z-50 min-w-[100px] overflow-hidden rounded-2xl bg-tertiary/85 py-2 shadow-2xl backdrop-blur-lg"
             role="listbox"
             aria-label="Select language"
           >
@@ -79,9 +79,8 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
               <motion.button
                 key={locale}
                 onClick={() => handleSelect(locale)}
-                whileHover={{ backgroundColor: 'rgba(51,146,237,0.2)' }}
                 whileTap={{ scale: 0.95 }}
-                className={`flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm transition-colors ${
+                className={`flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm transition-all duration-700 hover:bg-tertiary/95 ${
                   locale === currentLocale
                     ? 'font-semibold text-primary'
                     : 'text-white/80 hover:text-white'
