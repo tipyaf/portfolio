@@ -59,6 +59,7 @@ const profile = {
       type: 'image',
       description: 'Upload a profile picture',
       options: { hotspot: true },
+      group: ['en', 'fr'],
       fields: [
         defineField({
           name: 'alt',
@@ -119,6 +120,7 @@ const profile = {
       name: 'email',
       title: 'Email Address',
       type: 'string',
+      group: ['en', 'fr'],
     }),
     defineField({
       name: 'location',
@@ -190,6 +192,7 @@ const profile = {
       name: 'socialLinks',
       title: 'Social Links',
       type: 'array',
+      group: ['en', 'fr'],
       of: [
         defineField({
           name: 'socialLink',
@@ -239,12 +242,14 @@ const profile = {
       type: 'array',
       description: 'Add a list of skills',
       of: [{ type: 'string' }],
+      group: ['en', 'fr'],
     }),
 
     // ── Jobs ──────────────────────────────────────
     defineField({
       name: 'jobs',
       type: 'array',
+      group: ['en', 'fr'],
       of: [
         {
           name: 'job',
@@ -343,6 +348,7 @@ const profile = {
       name: 'projects',
       title: 'Projects',
       type: 'array',
+      group: ['en', 'fr'],
       of: [
         {
           type: 'object',

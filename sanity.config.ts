@@ -2,6 +2,7 @@ import { visionTool } from '@sanity/vision';
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { schemaTypes } from './schemaTypes';
+import { TranslateToFrenchAction } from './sanity/actions/translateAction';
 
 export default defineConfig({
   name: 'default',
@@ -14,5 +15,14 @@ export default defineConfig({
 
   schema: {
     types: schemaTypes,
+  },
+
+  document: {
+    actions: (prev, context) => {
+      if (context.schemaType === 'profile') {
+        return [TranslateToFrenchAction, ...prev];
+      }
+      return prev;
+    },
   },
 });
