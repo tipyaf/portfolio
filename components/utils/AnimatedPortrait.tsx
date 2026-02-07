@@ -9,6 +9,7 @@ interface AnimatedPortraitProps {
   backgroundColor?: string;
   initialBackgroundColor?: string;
   src: string;
+  altText?: string;
 }
 
 export default function AnimatedPortrait({
@@ -16,6 +17,7 @@ export default function AnimatedPortrait({
   src,
   initialBackgroundColor = COLORS.secondary,
   backgroundColor = COLORS.white,
+  altText = '',
 }: AnimatedPortraitProps) {
   const motionContainer: AnimationProps = {
     initial: {
@@ -72,7 +74,7 @@ export default function AnimatedPortrait({
           height={100}
           width={100}
           style={{ width: `${imageSize}px`, height: 'auto' }}
-          alt="a happy developer"
+          alt={altText}
         />
       </motion.div>
     </motion.div>

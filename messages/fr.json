@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "menu": "Menu",
+    "cv": "CV"
+  },
+  "menu": {
+    "about": "À propos",
+    "projects": "Projets publics",
+    "workHistory": "Parcours professionnel",
+    "contact": "Me contacter"
+  },
+  "home": {
+    "greeting": "Salut, je suis {userName} !",
+    "experience": "avec {years} ans d'expérience",
+    "learnMore": "En savoir plus"
+  },
+  "about": {
+    "title": "À propos"
+  },
+  "projects": {
+    "title": "Projets publics"
+  },
+  "workHistory": {
+    "title": "Parcours professionnel",
+    "present": "Présent"
+  },
+  "contact": {
+    "title": "Contact",
+    "cta": "Me contacter !"
+  },
+  "footer": {
+    "madeWith": "Fait avec ❤️ et"
+  },
+  "links": {
+    "mail": "Mail"
+  },
+  "alt": {
+    "portrait": "un développeur heureux",
+    "ytThumbnail": "miniature youtube",
+    "playButton": "bouton lecture",
+    "backgroundShapes": "formes d'arrière-plan",
+    "youtubeVideo": "vidéo youtube"
+  }
+}

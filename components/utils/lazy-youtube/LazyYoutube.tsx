@@ -6,6 +6,9 @@ interface LazyYoutubeProps {
   thumbnailWidth?: number;
   thumbnailHeight?: number;
   thumbnailQuality?: number;
+  thumbnailAlt?: string;
+  playButtonAlt?: string;
+  videoTitle?: string;
 }
 
 export default function LazyYoutube({
@@ -13,6 +16,9 @@ export default function LazyYoutube({
   thumbnailWidth = 960,
   thumbnailHeight = 540,
   thumbnailQuality = 100,
+  thumbnailAlt = '',
+  playButtonAlt = '',
+  videoTitle = '',
 }: LazyYoutubeProps): JSX.Element {
   const [imageClicked, setImageClicked] = useState(false);
 
@@ -33,7 +39,7 @@ export default function LazyYoutube({
           <Image
             className="w-full"
             src={`https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`}
-            alt="yt thumbnail"
+            alt={thumbnailAlt}
             width={thumbnailWidth}
             height={thumbnailHeight}
             quality={thumbnailQuality}
@@ -43,7 +49,7 @@ export default function LazyYoutube({
             id="play-button"
             className="fixed w-28 cursor-pointer"
             src="/assets/yt-play.svg"
-            alt="play button"
+            alt={playButtonAlt}
             width={80}
             height={80}
             loading="lazy"
@@ -57,7 +63,7 @@ export default function LazyYoutube({
               ? `https://www.youtube.com/embed/${youtubeId}?rel=0&showinfo=0&autoplay=1&mute=1`
               : ''
           }
-          title="youtube video"
+          title={videoTitle}
         />
       )}
     </div>

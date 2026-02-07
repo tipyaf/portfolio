@@ -11,9 +11,10 @@ interface Popover {
   className?: string;
   icon?: IconType;
   label?: string;
+  hideLabel?: boolean;
 }
 
-export default function Popover({ children, className, label, icon }: Popover) {
+export default function Popover({ children, className, label, icon, hideLabel }: Popover) {
   const [open, setOpen] = useState(false);
   const [scope, animate] = useAnimate();
   const popoverContainerId = 'popoverContainer';
@@ -48,13 +49,26 @@ export default function Popover({ children, className, label, icon }: Popover) {
   }, [open, animate, staggerList]);
   return (
     <div ref={scope} className="relative">
-      <Button onClick={() => setOpen(!open)} icon={icon} className={className}>
-        {label}
-      </Button>
+      {hideLabel ? (
+        <>
+          <Button onClick={() => setOpen(!open)} icon={icon} className={`${className} sm:hidden`} />
+          <Button
+            onClick={() => setOpen(!open)}
+            icon={icon}
+            className={`${className} hidden sm:flex`}
+          >
+            {label}
+          </Button>
+        </>
+      ) : (
+        <Button onClick={() => setOpen(!open)} icon={icon} className={className}>
+          {label}
+        </Button>
+      )}
       <div
         id={popoverContainerId}
         style={{ left: `-${size / 4}px` }}
-        className="absolute top-[40px] w-0 overflow-y-auto overflow-x-hidden rounded-2xl bg-tertiary/85 py-4 opacity-0 shadow-2xl backdrop-blur-lg"
+        className="absolute top-[40px] w-0 overflow-y-auto overflow-x-hidden rounded-2xl bg-tertiary/85 py-2 opacity-0 shadow-2xl backdrop-blur-lg"
       >
         <div className="h-full" id={popoverContentId}>
           {children}

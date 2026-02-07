@@ -1,3 +1,5 @@
+'use client';
+
 import Button from '@/components/utils/Button';
 import { SocialNetworkIconMap } from '@/constants/social-network-icon-map';
 import { SocialLink } from '@/types/server/social-link.model';
@@ -6,17 +8,24 @@ import { SiMinutemailer } from 'react-icons/si';
 interface LinksHeaderSectionProps {
   socialLinksData: SocialLink[];
   email?: string;
+  locale: string;
+  mailLabel: string;
 }
 
-export function LinksHeaderSection({ socialLinksData, email }: LinksHeaderSectionProps) {
+export function LinksHeaderSection({
+  socialLinksData,
+  email,
+  locale,
+  mailLabel,
+}: LinksHeaderSectionProps) {
   const socialLinks = [
     ...socialLinksData.map((item) => ({
       label: item.name,
-      href: item.url,
+      href: locale === 'fr' && item.url_fr ? item.url_fr : item.url,
       icon: SocialNetworkIconMap.get(item.code),
     })),
     {
-      label: 'Mail',
+      label: mailLabel,
       href: `mailto:${email}`,
       icon: SiMinutemailer,
     },
