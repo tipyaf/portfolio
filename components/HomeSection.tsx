@@ -6,6 +6,7 @@ import Button from '@/components/utils/Button';
 import { useCalculateYearsFromDate } from '@/hooks/useCalculateYearsFromDate';
 import { SocialLink } from '@/types/server/social-link.model';
 import { PortableText } from '@portabletext/react';
+import { useTranslations } from 'next-intl';
 import { PortableTextBlock } from 'next-sanity';
 import Image from 'next/image';
 
@@ -15,6 +16,7 @@ interface HomeSectionProps {
   headline: PortableTextBlock[];
   email: string;
   socialLinks: SocialLink[];
+  locale: string;
 }
 
 export default function HomeSection({
@@ -23,9 +25,12 @@ export default function HomeSection({
   headline,
   email,
   socialLinks,
+  locale,
 }: HomeSectionProps) {
+  const t = useTranslations('home');
+  const tAlt = useTranslations('alt');
   const experience = useCalculateYearsFromDate('2016-09-01');
-  const experienceText = `with ${experience} years of experience`;
+  const experienceText = t('experience', { years: experience });
   return (
     <section className="bg-gradient-to-tb relative flex h-screen max-h-screen w-full flex-col overflow-hidden bg-gradient-to-b from-primary via-50% to-transparent">
       {/*background shapes*/}
@@ -33,7 +38,7 @@ export default function HomeSection({
         <Image
           className="rotate-shapes h-full w-full"
           src="/assets/sweety-shapes.svg"
-          alt="background shapes"
+          alt={tAlt('backgroundShapes')}
           width={300}
           height={300}
         />
@@ -44,7 +49,7 @@ export default function HomeSection({
         <div className="relative flex w-full flex-1 flex-col items-center justify-center gap-6 text-center text-white">
           <div>
             <h1 className="max-w-5xl text-5xl">
-              <AnimText text={`Hi, I'm ${userName} !`} duration={2} />
+              <AnimText text={t('greeting', { userName })} duration={2} />
             </h1>
             <h2 className="max-w-2xl text-3xl">
               <AnimText className="mr-2 font-medium" text={role} duration={2} />
@@ -60,12 +65,12 @@ export default function HomeSection({
           </div>
           <div className="mt-20 flex w-full justify-center">
             <Button className="rounded-full bg-tertiary px-10 py-4 text-xl font-bold" href="#about">
-              Learn more
+              {t('learnMore')}
             </Button>
           </div>
         </div>
       </div>
-      <LinksHeaderSection email={email} socialLinksData={socialLinks} />
+      <LinksHeaderSection email={email} socialLinksData={socialLinks} locale={locale} />
     </section>
   );
 }

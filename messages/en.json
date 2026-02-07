@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "menu": "Menu",
+    "cv": "CV"
+  },
+  "menu": {
+    "about": "About me",
+    "projects": "Public projects",
+    "workHistory": "Work history",
+    "contact": "Get in touch"
+  },
+  "home": {
+    "greeting": "Hi, I'm {userName} !",
+    "experience": "with {years} years of experience",
+    "learnMore": "Learn more"
+  },
+  "about": {
+    "title": "About me"
+  },
+  "projects": {
+    "title": "Public projects"
+  },
+  "workHistory": {
+    "title": "Work history",
+    "present": "Present"
+  },
+  "contact": {
+    "title": "Contact",
+    "cta": "Get In Touch !"
+  },
+  "footer": {
+    "madeWith": "Made with ❤️ and"
+  },
+  "links": {
+    "mail": "Mail"
+  },
+  "alt": {
+    "portrait": "a happy developer",
+    "ytThumbnail": "youtube thumbnail",
+    "playButton": "play button",
+    "backgroundShapes": "background shapes",
+    "youtubeVideo": "youtube video"
+  }
+}

@@ -3,4 +3,9 @@ export enum SocialLinkCode {
   GHUB = 'GHUB',
 }
 
-export type SocialLink = { readonly name: string; url: string; code: SocialLinkCode };
+export type SocialLink = {
+  readonly name: string;
+  url: string;
+  url_fr?: string;
+  code: SocialLinkCode;
+};
