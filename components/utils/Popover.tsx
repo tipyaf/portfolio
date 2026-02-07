@@ -11,9 +11,10 @@ interface Popover {
   className?: string;
   icon?: IconType;
   label?: string;
+  hideLabel?: boolean;
 }
 
-export default function Popover({ children, className, label, icon }: Popover) {
+export default function Popover({ children, className, label, icon, hideLabel }: Popover) {
   const [open, setOpen] = useState(false);
   const [scope, animate] = useAnimate();
   const popoverContainerId = 'popoverContainer';
@@ -48,9 +49,22 @@ export default function Popover({ children, className, label, icon }: Popover) {
   }, [open, animate, staggerList]);
   return (
     <div ref={scope} className="relative">
-      <Button onClick={() => setOpen(!open)} icon={icon} className={className}>
-        {label}
-      </Button>
+      {hideLabel ? (
+        <>
+          <Button onClick={() => setOpen(!open)} icon={icon} className={`${className} sm:hidden`} />
+          <Button
+            onClick={() => setOpen(!open)}
+            icon={icon}
+            className={`${className} hidden sm:flex`}
+          >
+            {label}
+          </Button>
+        </>
+      ) : (
+        <Button onClick={() => setOpen(!open)} icon={icon} className={className}>
+          {label}
+        </Button>
+      )}
       <div
         id={popoverContainerId}
         style={{ left: `-${size / 4}px` }}

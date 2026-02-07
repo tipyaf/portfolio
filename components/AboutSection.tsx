@@ -24,6 +24,8 @@ export default function AboutSection({
   locale,
 }: AboutProps) {
   const t = useTranslations('about');
+  const tAlt = useTranslations('alt');
+  const tLinks = useTranslations('links');
   const cardVariants: Variants = {
     offscreen: {
       opacity: 0,
@@ -50,7 +52,12 @@ export default function AboutSection({
           <div className="relative flex max-w-[1000px] flex-col items-center justify-center gap-6 rounded px-5 py-4 text-tertiary">
             {!!youtubeId && (
               <div className="w-full overflow-hidden rounded-2xl">
-                <LazyYoutube youtubeId={youtubeId}></LazyYoutube>
+                <LazyYoutube
+                  youtubeId={youtubeId}
+                  thumbnailAlt={tAlt('ytThumbnail')}
+                  playButtonAlt={tAlt('playButton')}
+                  videoTitle={tAlt('youtubeVideo')}
+                />
               </div>
             )}
             <article className="mt-3 w-full text-justify">
@@ -63,7 +70,12 @@ export default function AboutSection({
         </motion.div>
       </motion.div>
 
-      <LinksHeaderSection email={email} socialLinksData={socialLinks} locale={locale} />
+      <LinksHeaderSection
+        email={email}
+        socialLinksData={socialLinks}
+        locale={locale}
+        mailLabel={tLinks('mail')}
+      />
     </section>
   );
 }

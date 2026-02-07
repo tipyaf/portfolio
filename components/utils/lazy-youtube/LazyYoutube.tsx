@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
@@ -7,6 +6,9 @@ interface LazyYoutubeProps {
   thumbnailWidth?: number;
   thumbnailHeight?: number;
   thumbnailQuality?: number;
+  thumbnailAlt?: string;
+  playButtonAlt?: string;
+  videoTitle?: string;
 }
 
 export default function LazyYoutube({
@@ -14,8 +16,10 @@ export default function LazyYoutube({
   thumbnailWidth = 960,
   thumbnailHeight = 540,
   thumbnailQuality = 100,
+  thumbnailAlt = '',
+  playButtonAlt = '',
+  videoTitle = '',
 }: LazyYoutubeProps): JSX.Element {
-  const t = useTranslations('alt');
   const [imageClicked, setImageClicked] = useState(false);
 
   const onThumbnailClick = () => {
@@ -35,7 +39,7 @@ export default function LazyYoutube({
           <Image
             className="w-full"
             src={`https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`}
-            alt={t('ytThumbnail')}
+            alt={thumbnailAlt}
             width={thumbnailWidth}
             height={thumbnailHeight}
             quality={thumbnailQuality}
@@ -45,7 +49,7 @@ export default function LazyYoutube({
             id="play-button"
             className="fixed w-28 cursor-pointer"
             src="/assets/yt-play.svg"
-            alt={t('playButton')}
+            alt={playButtonAlt}
             width={80}
             height={80}
             loading="lazy"
@@ -59,7 +63,7 @@ export default function LazyYoutube({
               ? `https://www.youtube.com/embed/${youtubeId}?rel=0&showinfo=0&autoplay=1&mute=1`
               : ''
           }
-          title={t('youtubeVideo')}
+          title={videoTitle}
         />
       )}
     </div>

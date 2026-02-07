@@ -2,28 +2,12 @@
 
 import Button from '@/components/utils/Button';
 import { ILink } from '@/types/client/link.model';
-import { useTranslations } from 'next-intl';
 
-export default function MenuList() {
-  const t = useTranslations('menu');
-  const items: ILink[] = [
-    {
-      label: t('about'),
-      href: '/#about',
-    },
-    {
-      label: t('projects'),
-      href: '/#projects',
-    },
-    {
-      label: t('workHistory'),
-      href: '/#workHistory',
-    },
-    {
-      label: t('contact'),
-      href: '/#contact',
-    },
-  ];
+interface MenuListProps {
+  items: ILink[];
+}
+
+export default function MenuList({ items }: MenuListProps) {
   return (
     <ul role="menu" className="flex h-full flex-col justify-evenly">
       {items.map((item, index) => (

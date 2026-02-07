@@ -3,7 +3,6 @@ import Button from '@/components/utils/Button';
 import { localize } from '@/lib/localize';
 import { Job } from '@/types/server/job.model';
 import { PortableText } from '@portabletext/react';
-import { useTranslations } from 'next-intl';
 import { PortableTextBlock } from 'next-sanity';
 import { BiPlus } from 'react-icons/bi';
 
@@ -11,10 +10,15 @@ interface JobCardProps {
   job: Job;
   showDescription?: boolean;
   locale: string;
+  presentLabel: string;
 }
 
-export default function JobCard({ job, showDescription = true, locale }: JobCardProps) {
-  const t = useTranslations('workHistory');
+export default function JobCard({
+  job,
+  showDescription = true,
+  locale,
+  presentLabel,
+}: JobCardProps) {
   const role = localize(job, 'role', locale) as string;
   const location = localize(job, 'location', locale) as string;
   const description = localize(job, 'description', locale) as PortableTextBlock[];
@@ -30,7 +34,7 @@ export default function JobCard({ job, showDescription = true, locale }: JobCard
         <div>{job.company.name}</div>
       )}
       <div className="text-sm font-light">
-        {job.date.start} - {job.date?.present ? t('present') : job.date.end}
+        {job.date.start} - {job.date?.present ? presentLabel : job.date.end}
         <span className="ml-1">
           (<span className="inline-block first-letter:uppercase">{job.jobType}</span>)
         </span>

@@ -29,6 +29,7 @@ export default function HomeSection({
 }: HomeSectionProps) {
   const t = useTranslations('home');
   const tAlt = useTranslations('alt');
+  const tLinks = useTranslations('links');
   const experience = useCalculateYearsFromDate('2016-09-01');
   const experienceText = t('experience', { years: experience });
   return (
@@ -70,7 +71,12 @@ export default function HomeSection({
           </div>
         </div>
       </div>
-      <LinksHeaderSection email={email} socialLinksData={socialLinks} locale={locale} />
+      <LinksHeaderSection
+        email={email}
+        socialLinksData={socialLinks}
+        locale={locale}
+        mailLabel={tLinks('mail')}
+      />
     </section>
   );
 }
