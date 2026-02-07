@@ -1,15 +1,14 @@
-import { useState, useCallback } from 'react';
-import { useDocumentOperation } from 'sanity';
+import { useCallback, useState } from 'react';
 import type { DocumentActionComponent } from 'sanity';
+import { useDocumentOperation } from 'sanity';
+import { blocksToHtml, htmlToBlocks } from '../lib/portable-text-translator';
 import {
-  topLevelFields,
   jobFields,
   projectFields,
+  topLevelFields,
   type TranslationField,
 } from '../lib/translation-field-map';
-import { blocksToHtml, htmlToBlocks } from '../lib/portable-text-translator';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyDoc = Record<string, any>;
 
 function getNestedValue(obj: AnyDoc, path: string): unknown {
@@ -19,7 +18,7 @@ function getNestedValue(obj: AnyDoc, path: string): unknown {
 interface TextEntry {
   fieldPath: string;
   type: 'string' | 'text' | 'portableText';
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   sourceBlocks?: any[];
 }
 
@@ -38,7 +37,6 @@ function collectTexts(
     if (!value) continue;
 
     if (field.type === 'portableText') {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const blocks = value as any[];
       const html = blocksToHtml(blocks);
       if (!html) continue;
@@ -127,13 +125,11 @@ export const TranslateToFrenchAction: DocumentActionComponent = (props) => {
         }
 
         const data = await response.json();
-        translatedTexts.push(
-          ...data.translations.map((t: { text: string }) => t.text),
-        );
+        translatedTexts.push(...data.translations.map((t: { text: string }) => t.text));
       }
 
       // Build patch operations
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
       const patchSet: Record<string, any> = {};
 
       allEntries.forEach((entry, i) => {

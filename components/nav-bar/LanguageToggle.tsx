@@ -9,12 +9,6 @@ import { FiGlobe } from 'react-icons/fi';
 const LOCALE_LABELS: Record<string, string> = {
   en: 'EN',
   fr: 'FR',
-  es: 'ES',
-  de: 'DE',
-  it: 'IT',
-  pt: 'PT',
-  ja: 'JA',
-  zh: 'ZH',
 };
 
 interface LanguageToggleProps {

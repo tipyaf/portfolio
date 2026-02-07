@@ -1,8 +1,8 @@
 import { visionTool } from '@sanity/vision';
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
-import { schemaTypes } from './schemaTypes';
 import { TranslateToFrenchAction } from './sanity/actions/translateAction';
+import { schemaTypes } from './schemaTypes';
 
 export default defineConfig({
   name: 'default',

@@ -19,7 +19,6 @@ interface PortableTextBlock {
   markDefs?: PortableTextMarkDef[];
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyBlock = any;
 
 export function blocksToHtml(blocks: AnyBlock[]): string {
@@ -61,10 +60,7 @@ function generateKey(): string {
   return Math.random().toString(36).slice(2, 10);
 }
 
-export function htmlToBlocks(
-  html: string,
-  sourceBlocks: AnyBlock[],
-): PortableTextBlock[] {
+export function htmlToBlocks(html: string, sourceBlocks: AnyBlock[]): PortableTextBlock[] {
   const parser = new DOMParser();
   const doc = parser.parseFromString(html, 'text/html');
   const paragraphs = doc.body.querySelectorAll('p');

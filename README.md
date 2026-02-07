@@ -1,25 +1,28 @@
-# Portfolio v1.0.2
+# Portfolio v1.1.0
 
-Personal developer portfolio built with [**Next.js 14**](https://nextjs.org/) (App Router) and [**Sanity.io**](https://www.sanity.io/) as headless CMS. Single-page site with sections: Home, About, Projects, Work History, Contact. All content is managed in Sanity and fetched server-side via GROQ queries.
+Personal developer portfolio built with [**Next.js 16**](https://nextjs.org/) (App Router) and [**Sanity.io**](https://www.sanity.io/) as headless CMS. Single-page site with sections: Home, About, Projects, Work History, Contact. All content is managed in Sanity and fetched server-side via GROQ queries.
 
 ## Tech Stack
 
-- [**Next.js 14**](https://nextjs.org/) — App Router, SSR/SSG, ISR (60s revalidation)
-- [**Sanity.io**](https://www.sanity.io/) — Headless CMS with embedded Studio at `/studio`
+- [**Next.js 16**](https://nextjs.org/) — App Router, SSR/SSG, ISR (60s revalidation), Turbopack
+- [**React 19**](https://react.dev/) — Latest React with ref-as-prop, stricter hydration
+- [**Sanity.io v5**](https://www.sanity.io/) — Headless CMS with embedded Studio at `/studio`
 - [**TypeScript**](https://www.typescriptlang.org/) — Static typing across the entire codebase
 - [**Tailwind CSS**](https://tailwindcss.com/) — Utility-first styling with custom color palette
-- [**Framer Motion**](https://www.framer.com/motion/) — Scroll-triggered and interaction animations
+- [**Framer Motion 12**](https://www.framer.com/motion/) — Scroll-triggered and interaction animations
 - [**next-intl**](https://next-intl-docs.vercel.app/) — Internationalization (English + French)
 - [**Vercel**](https://vercel.com/) — Hosting with Analytics and Speed Insights
-- [**Prettier**](https://prettier.io/) + [**ESLint**](https://eslint.org/) — Code formatting and linting
-- [**Husky**](https://typicode.github.io/husky/) — Pre-commit hooks (`next lint --fix` on staged files)
+- [**ESLint 9**](https://eslint.org/) — Flat config with Prettier integration
+- [**Prettier**](https://prettier.io/) — Code formatting with Tailwind class sorting
+- [**Husky**](https://typicode.github.io/husky/) — Pre-commit hooks (`eslint --fix` on staged files)
 
 ## Features
 
 - **Dynamic content** — All data managed in Sanity CMS (bio, jobs, projects, social links)
 - **Internationalization** — English (default) and French, with subpath routing (`/` for EN, `/fr` for FR)
 - **Localized CMS fields** — Every Sanity field has EN and FR variants (including video IDs, URLs, resume)
-- **SEO optimized** — SSR, hreflang tags, canonical URLs, structured metadata, Open Graph
+- **SEO optimized** — SSR, hreflang tags, locale-aware canonical URLs, structured metadata, Open Graph, Twitter Cards
+- **Security headers** — X-Content-Type-Options, X-Frame-Options, Referrer-Policy
 - **Responsive design** — Mobile-first, works on all screen sizes
 - **Sanity Studio** — Embedded at `/studio` with language tabs (EN/FR) for easy content editing
 - **Performance** — High scores on GTmetrix and Google PageSpeed Insights
@@ -28,7 +31,7 @@ Personal developer portfolio built with [**Next.js 14**](https://nextjs.org/) (A
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 20.19+
 - A Sanity project with the profile schema
 
 ### Environment Variables
@@ -82,7 +85,7 @@ app/
     layout.tsx            # Isolated layout for Sanity Studio
     [[...index]]/page.tsx # Sanity Studio
 components/
-  nav-bar/                # NavBar with LanguageToggle (EN|FR pill)
+  nav-bar/                # NavBar with LanguageToggle (EN|FR dropdown)
   utils/                  # Reusable UI primitives
 i18n/
   routing.ts              # Locale config (en/fr, default: en)
