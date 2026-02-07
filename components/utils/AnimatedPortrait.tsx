@@ -2,6 +2,7 @@
 
 import { COLORS } from '@/tailwind.config';
 import { AnimationProps, motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
 interface AnimatedPortraitProps {
@@ -17,6 +18,7 @@ export default function AnimatedPortrait({
   initialBackgroundColor = COLORS.secondary,
   backgroundColor = COLORS.white,
 }: AnimatedPortraitProps) {
+  const t = useTranslations('alt');
   const motionContainer: AnimationProps = {
     initial: {
       backgroundColor: initialBackgroundColor,
@@ -72,7 +74,7 @@ export default function AnimatedPortrait({
           height={100}
           width={100}
           style={{ width: `${imageSize}px`, height: 'auto' }}
-          alt="a happy developer"
+          alt={t('portrait')}
         />
       </motion.div>
     </motion.div>

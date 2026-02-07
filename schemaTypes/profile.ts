@@ -7,26 +7,52 @@ const profile = {
   type: 'document',
   icon: BiUser,
   fields: [
+    // ── Identity ──────────────────────────────────────
     defineField({
       name: 'fullName',
-      title: 'Full Name',
+      title: 'Full Name (EN)',
       type: 'string',
       validation: (rule) => rule.required(),
+      group: 'en',
+    }),
+    defineField({
+      name: 'fullName_fr',
+      title: 'Full Name (FR)',
+      type: 'string',
+      group: 'fr',
     }),
     defineField({
       name: 'role',
-      title: 'Role',
+      title: 'Role (EN)',
       type: 'string',
       validation: (rule) => rule.required(),
+      group: 'en',
+    }),
+    defineField({
+      name: 'role_fr',
+      title: 'Role (FR)',
+      type: 'string',
+      group: 'fr',
     }),
     defineField({
       name: 'headline',
-      title: 'Headline',
+      title: 'Headline (EN)',
       type: 'array',
       of: [{ type: 'block' }],
       description: 'In one short sentence, what do you do?',
       validation: (Rule) => Rule.required().max(100),
+      group: 'en',
     }),
+    defineField({
+      name: 'headline_fr',
+      title: 'Headline (FR)',
+      type: 'array',
+      of: [{ type: 'block' }],
+      description: 'En une phrase courte, que faites-vous ?',
+      group: 'fr',
+    }),
+
+    // ── Media ──────────────────────────────────────
     defineField({
       name: 'profileImage',
       title: 'Profile Image',
@@ -43,12 +69,13 @@ const profile = {
     }),
     defineField({
       name: 'profileVideoId',
-      title: 'Youtube video ID',
+      title: 'Youtube video ID (EN)',
       type: 'string',
+      group: 'en',
       validation: (rule) => {
         return rule.custom((value) => {
           if (!value) {
-            return true; // Field is optional
+            return true;
           }
           return value.length === 11
             ? true
@@ -57,10 +84,36 @@ const profile = {
       },
     }),
     defineField({
+      name: 'profileVideoId_fr',
+      title: 'Youtube video ID (FR)',
+      type: 'string',
+      group: 'fr',
+      validation: (rule) => {
+        return rule.custom((value) => {
+          if (!value) {
+            return true;
+          }
+          return value.length === 11
+            ? true
+            : 'The field must be exactly 11 characters if provided.';
+        });
+      },
+    }),
+
+    // ── Bio ──────────────────────────────────────
+    defineField({
       name: 'shortBio',
-      title: 'Short Bio',
+      title: 'Short Bio (EN)',
       type: 'text',
       rows: 4,
+      group: 'en',
+    }),
+    defineField({
+      name: 'shortBio_fr',
+      title: 'Short Bio (FR)',
+      type: 'text',
+      rows: 4,
+      group: 'fr',
     }),
     defineField({
       name: 'email',
@@ -69,13 +122,21 @@ const profile = {
     }),
     defineField({
       name: 'location',
-      title: 'Location',
+      title: 'Location (EN)',
       type: 'string',
+      group: 'en',
+    }),
+    defineField({
+      name: 'location_fr',
+      title: 'Location (FR)',
+      type: 'string',
+      group: 'fr',
     }),
     defineField({
       name: 'fullBio',
-      title: 'Full Bio',
+      title: 'Full Bio (EN)',
       type: 'object',
+      group: 'en',
       fields: [
         defineField({
           name: 'title',
@@ -91,10 +152,40 @@ const profile = {
       ],
     }),
     defineField({
-      name: 'resumeURL',
-      title: 'Upload Resume',
-      type: 'file',
+      name: 'fullBio_fr',
+      title: 'Full Bio (FR)',
+      type: 'object',
+      group: 'fr',
+      fields: [
+        defineField({
+          name: 'title',
+          title: 'Titre',
+          type: 'string',
+        }),
+        defineField({
+          name: 'bio',
+          title: 'Votre bio',
+          type: 'array',
+          of: [{ type: 'block' }],
+        }),
+      ],
     }),
+
+    // ── Resume ──────────────────────────────────────
+    defineField({
+      name: 'resumeURL',
+      title: 'Upload Resume (EN)',
+      type: 'file',
+      group: 'en',
+    }),
+    defineField({
+      name: 'resumeURL_fr',
+      title: 'Upload Resume (FR)',
+      type: 'file',
+      group: 'fr',
+    }),
+
+    // ── Social Links ──────────────────────────────────────
     defineField({
       name: 'socialLinks',
       title: 'Social Links',
@@ -118,6 +209,11 @@ const profile = {
               validation: (rule) => rule.required(),
             }),
             defineField({
+              name: 'url_fr',
+              title: 'URL (FR)',
+              type: 'url',
+            }),
+            defineField({
               name: 'code',
               title: 'Code',
               type: 'string',
@@ -135,6 +231,8 @@ const profile = {
         sortable: true,
       },
     }),
+
+    // ── Skills ──────────────────────────────────────
     defineField({
       name: 'skills',
       title: 'Skills',
@@ -142,6 +240,8 @@ const profile = {
       description: 'Add a list of skills',
       of: [{ type: 'string' }],
     }),
+
+    // ── Jobs ──────────────────────────────────────
     defineField({
       name: 'jobs',
       type: 'array',
@@ -166,9 +266,14 @@ const profile = {
             }),
             defineField({
               name: 'location',
-              title: 'Location',
+              title: 'Location (EN)',
               type: 'string',
               validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'location_fr',
+              title: 'Location (FR)',
+              type: 'string',
             }),
             defineField({
               name: 'date',
@@ -194,9 +299,14 @@ const profile = {
             }),
             defineField({
               name: 'role',
-              title: 'Role',
+              title: 'Role (EN)',
               type: 'string',
               validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'role_fr',
+              title: 'Role (FR)',
+              type: 'string',
             }),
             defineField({
               name: 'jobType',
@@ -208,7 +318,13 @@ const profile = {
             }),
             defineField({
               name: 'description',
-              title: 'Job description',
+              title: 'Job description (EN)',
+              type: 'array',
+              of: [{ type: 'block' }],
+            }),
+            defineField({
+              name: 'description_fr',
+              title: 'Job description (FR)',
               type: 'array',
               of: [{ type: 'block' }],
             }),
@@ -221,6 +337,8 @@ const profile = {
         },
       ],
     }),
+
+    // ── Projects ──────────────────────────────────────
     defineField({
       name: 'projects',
       title: 'Projects',
@@ -233,11 +351,17 @@ const profile = {
           fields: [
             defineField({
               name: 'name',
-              title: 'Title',
+              title: 'Title (EN)',
               type: 'string',
               validation: (rule) => rule.required(),
             }),
+            defineField({
+              name: 'name_fr',
+              title: 'Title (FR)',
+              type: 'string',
+            }),
             defineField({ name: 'url', title: 'URL', type: 'url' }),
+            defineField({ name: 'url_fr', title: 'URL (FR)', type: 'url' }),
             defineField({
               name: 'image',
               title: 'image',
@@ -246,16 +370,27 @@ const profile = {
               fields: [
                 defineField({
                   name: 'alt',
-                  title: 'Alt',
+                  title: 'Alt (EN)',
                   type: 'string',
                   validation: (rule) => rule.required(),
+                }),
+                defineField({
+                  name: 'alt_fr',
+                  title: 'Alt (FR)',
+                  type: 'string',
                 }),
               ],
               validation: (rule) => rule.required(),
             }),
             defineField({
               name: 'description',
-              title: 'Description',
+              title: 'Description (EN)',
+              type: 'array',
+              of: [{ type: 'block' }],
+            }),
+            defineField({
+              name: 'description_fr',
+              title: 'Description (FR)',
               type: 'array',
               of: [{ type: 'block' }],
             }),
@@ -267,9 +402,14 @@ const profile = {
               fields: [
                 defineField({
                   name: 'alt',
-                  title: 'Alt',
+                  title: 'Alt (EN)',
                   type: 'string',
                   validation: (rule) => rule.required(),
+                }),
+                defineField({
+                  name: 'alt_fr',
+                  title: 'Alt (FR)',
+                  type: 'string',
                 }),
               ],
             }),
@@ -283,6 +423,10 @@ const profile = {
         },
       ],
     }),
+  ],
+  groups: [
+    { name: 'en', title: 'English', default: true },
+    { name: 'fr', title: 'Français' },
   ],
 };
 

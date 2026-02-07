@@ -1,22 +1,26 @@
+'use client';
+
 import Button from '@/components/utils/Button';
 import { ILink } from '@/types/client/link.model';
+import { useTranslations } from 'next-intl';
 
 export default function MenuList() {
+  const t = useTranslations('menu');
   const items: ILink[] = [
     {
-      label: 'About me',
+      label: t('about'),
       href: '/#about',
     },
     {
-      label: 'Public projects',
+      label: t('projects'),
       href: '/#projects',
     },
     {
-      label: 'Work history',
+      label: t('workHistory'),
       href: '/#workHistory',
     },
     {
-      label: 'Get in touch',
+      label: t('contact'),
       href: '/#contact',
     },
   ];
