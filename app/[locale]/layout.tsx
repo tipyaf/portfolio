@@ -25,20 +25,37 @@ export async function generateMetadata({
   const { locale } = await params;
   const profile: ProfileType = await getProfile();
 
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const title = `Portfolio of ${profile.fullName} | ${profile.role}`;
+  const description = profile.shortBio;
+
   return {
-    title: `Portfolio of ${profile.fullName} | ${profile.role}`,
-    description: profile.shortBio,
+    title,
+    description,
     openGraph: {
+      type: 'website',
+      locale,
+      alternateLocale: locale === 'en' ? 'fr' : 'en',
+      title,
+      description,
+      url: locale === 'en' ? baseUrl : `${baseUrl}/fr`,
+      siteName: `${profile.fullName} Portfolio`,
+      images: [profile.profileImage.image],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
       images: [profile.profileImage.image],
     },
     verification: {
       google: 'CpvTDgPE1Hdu5K3R4fYzYJxuN8dwjhzsNUXEQ985bY0',
     },
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_BASE_URL}`,
+      canonical: locale === 'en' ? baseUrl : `${baseUrl}/fr`,
       languages: {
-        en: `${process.env.NEXT_PUBLIC_BASE_URL}`,
-        fr: `${process.env.NEXT_PUBLIC_BASE_URL}/fr`,
+        en: `${baseUrl}`,
+        fr: `${baseUrl}/fr`,
       },
     },
   };
