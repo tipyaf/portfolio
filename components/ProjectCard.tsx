@@ -17,7 +17,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, locale }: ProjectCardProps) {
   const [highResLoaded, setHighResLoaded] = useState(false);
-  const cardRef = useRef<HTMLImageElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const inView = useInView(cardRef);
   const imageWidth = 1920;
   const imageHeight = 1080;
