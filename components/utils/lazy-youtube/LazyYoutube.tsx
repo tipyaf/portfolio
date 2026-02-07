@@ -1,5 +1,7 @@
+'use client';
+
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 interface LazyYoutubeProps {
   youtubeId: string;
@@ -19,23 +21,18 @@ export default function LazyYoutube({
   thumbnailAlt = '',
   playButtonAlt = '',
   videoTitle = '',
-}: LazyYoutubeProps): JSX.Element {
+}: LazyYoutubeProps) {
   const [imageClicked, setImageClicked] = useState(false);
-
-  const onThumbnailClick = () => {
-    setImageClicked(true);
-  };
-
-  useEffect(() => {
-    const playImg = document.querySelector('#play-button');
-
-    playImg?.addEventListener('click', onThumbnailClick, { once: true });
-  }, []);
 
   return (
     <div className="youtubeContainer relative flex w-full items-center justify-center">
       {!imageClicked ? (
-        <>
+        <button
+          type="button"
+          onClick={() => setImageClicked(true)}
+          className="relative flex w-full items-center justify-center"
+          aria-label={playButtonAlt || 'Play video'}
+        >
           <Image
             className="w-full"
             src={`https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`}
@@ -46,23 +43,17 @@ export default function LazyYoutube({
             loading="lazy"
           />
           <Image
-            id="play-button"
-            className="fixed w-28 cursor-pointer"
+            className="absolute w-28"
             src="/assets/yt-play.svg"
             alt={playButtonAlt}
             width={80}
             height={80}
-            loading="lazy"
           />
-        </>
+        </button>
       ) : (
         <iframe
           allowFullScreen
-          src={
-            imageClicked
-              ? `https://www.youtube.com/embed/${youtubeId}?rel=0&showinfo=0&autoplay=1&mute=1`
-              : ''
-          }
+          src={`https://www.youtube.com/embed/${youtubeId}?rel=0&showinfo=0&autoplay=1&mute=1`}
           title={videoTitle}
         />
       )}

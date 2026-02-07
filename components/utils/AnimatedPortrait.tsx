@@ -1,7 +1,7 @@
 'use client';
 
 import { COLORS } from '@/tailwind.config';
-import { AnimationProps, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 interface AnimatedPortraitProps {
@@ -19,7 +19,7 @@ export default function AnimatedPortrait({
   backgroundColor = COLORS.white,
   altText = '',
 }: AnimatedPortraitProps) {
-  const motionContainer: AnimationProps = {
+  const motionContainer = {
     initial: {
       backgroundColor: initialBackgroundColor,
       borderRadius: 20,
@@ -36,7 +36,7 @@ export default function AnimatedPortrait({
       duration: 1.5,
     },
   };
-  const motionImageContainer: AnimationProps = {
+  const motionImageContainer = {
     initial: {
       translateY: 1000,
       translateX: -500,

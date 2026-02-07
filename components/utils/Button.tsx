@@ -3,7 +3,9 @@
 import { IButton } from '@/types/client/button.model';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { HTMLAttributeAnchorTarget, ReactNode } from 'react';
+import { type HTMLAttributeAnchorTarget, type ReactNode } from 'react';
+
+const MotionLink = motion.create(Link);
 
 interface ButtonProps extends IButton {
   children?: ReactNode;
@@ -24,7 +26,6 @@ export default function Button({
   const classStyle = `btn ${className}`;
   const iconClassStyle = `${children ? 'mr-2 ' : ' '} inline`;
   const scale = 0.85;
-  const MotionLink = motion(Link);
 
   const link = download ? (
     <motion.a
