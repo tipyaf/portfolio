@@ -3,17 +3,21 @@
 import Button from '@/components/utils/Button';
 import { SocialNetworkIconMap } from '@/constants/social-network-icon-map';
 import { SocialLink } from '@/types/server/social-link.model';
-import { useTranslations } from 'next-intl';
 import { SiMinutemailer } from 'react-icons/si';
 
 interface LinksHeaderSectionProps {
   socialLinksData: SocialLink[];
   email?: string;
   locale: string;
+  mailLabel: string;
 }
 
-export function LinksHeaderSection({ socialLinksData, email, locale }: LinksHeaderSectionProps) {
-  const t = useTranslations('links');
+export function LinksHeaderSection({
+  socialLinksData,
+  email,
+  locale,
+  mailLabel,
+}: LinksHeaderSectionProps) {
   const socialLinks = [
     ...socialLinksData.map((item) => ({
       label: item.name,
@@ -21,7 +25,7 @@ export function LinksHeaderSection({ socialLinksData, email, locale }: LinksHead
       icon: SocialNetworkIconMap.get(item.code),
     })),
     {
-      label: t('mail'),
+      label: mailLabel,
       href: `mailto:${email}`,
       icon: SiMinutemailer,
     },

@@ -1,76 +1,109 @@
 'use client';
 
 import { usePathname, useRouter } from '@/i18n/navigation';
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { routing } from '@/i18n/routing';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { FiGlobe } from 'react-icons/fi';
 
-type Language = 'en' | 'fr';
+const LOCALE_LABELS: Record<string, string> = {
+  en: 'EN',
+  fr: 'FR',
+  es: 'ES',
+  de: 'DE',
+  it: 'IT',
+  pt: 'PT',
+  ja: 'JA',
+  zh: 'ZH',
+};
 
 interface LanguageToggleProps {
-  defaultLanguage: Language;
+  currentLocale: string;
 }
 
-export default function LanguageToggle({ defaultLanguage }: LanguageToggleProps) {
-  const [selectedLanguage, setSelectedLanguage] = useState<Language>(defaultLanguage);
-  const [announcement, setAnnouncement] = useState('');
+export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
+  const [open, setOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
+  const ref = useRef<HTMLDivElement>(null);
 
-  const handleToggle = (lang: Language) => {
-    if (lang === selectedLanguage) return;
-    setSelectedLanguage(lang);
-    setAnnouncement(lang === 'en' ? 'Language changed to English' : 'Langue changée en français');
-    router.replace(pathname, { locale: lang });
+  const locales = routing.locales;
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleSelect = (locale: string) => {
+    if (locale === currentLocale) {
+      setOpen(false);
+      return;
+    }
+    setOpen(false);
+    router.replace(pathname, { locale });
   };
 
   return (
-    <>
-      <div
-        className="relative flex h-9 w-[60px] items-center rounded-full border border-white/20 bg-white/50 p-0.5 backdrop-blur-lg transition-all hover:border-white/40 dark:bg-black/50"
-        role="group"
-        aria-label="Language selector"
+    <div ref={ref} className="relative">
+      <motion.button
+        onClick={() => setOpen(!open)}
+        whileTap={{ scale: 0.9 }}
+        className="flex h-9 items-center gap-1.5 rounded-full border border-white/20 bg-white/50 px-3 backdrop-blur-lg transition-colors hover:border-white/40 dark:bg-black/50 dark:text-white"
+        aria-label="Change language"
+        aria-expanded={open}
+        aria-haspopup="listbox"
       >
-        <motion.div
-          className="absolute h-8 w-7 rounded-full bg-primary shadow-sm"
-          initial={false}
-          animate={{
-            x: selectedLanguage === 'en' ? 2 : 30,
-          }}
-          transition={{
-            type: 'spring',
-            stiffness: 350,
-            damping: 30,
-          }}
-        />
+        <FiGlobe className="text-sm" />
+        <span className="text-xs font-semibold">
+          {LOCALE_LABELS[currentLocale] || currentLocale.toUpperCase()}
+        </span>
+      </motion.button>
 
-        <motion.button
-          onClick={() => handleToggle('en')}
-          whileTap={{ scale: 0.95 }}
-          className={`relative z-10 flex h-8 w-7 items-center justify-center text-xs font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 ${
-            selectedLanguage === 'en' ? 'text-white' : 'text-tertiary dark:text-white/60'
-          }`}
-          aria-label="Switch to English"
-          aria-pressed={selectedLanguage === 'en'}
-        >
-          EN
-        </motion.button>
-
-        <motion.button
-          onClick={() => handleToggle('fr')}
-          whileTap={{ scale: 0.95 }}
-          className={`relative z-10 flex h-8 w-7 items-center justify-center text-xs font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 ${
-            selectedLanguage === 'fr' ? 'text-white' : 'text-tertiary dark:text-white/60'
-          }`}
-          aria-label="Passer en français"
-          aria-pressed={selectedLanguage === 'fr'}
-        >
-          FR
-        </motion.button>
-      </div>
-
-      <div role="status" aria-live="polite" className="sr-only">
-        {announcement}
-      </div>
-    </>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: -8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: -8 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+            className="absolute right-0 top-[44px] z-50 min-w-[100px] overflow-hidden rounded-xl border border-white/20 bg-tertiary/90 shadow-2xl backdrop-blur-lg"
+            role="listbox"
+            aria-label="Select language"
+          >
+            {locales.map((locale) => (
+              <motion.button
+                key={locale}
+                onClick={() => handleSelect(locale)}
+                whileHover={{ backgroundColor: 'rgba(51,146,237,0.2)' }}
+                whileTap={{ scale: 0.95 }}
+                className={`flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm transition-colors ${
+                  locale === currentLocale
+                    ? 'font-semibold text-primary'
+                    : 'text-white/80 hover:text-white'
+                }`}
+                role="option"
+                aria-selected={locale === currentLocale}
+              >
+                <span className="font-medium">{LOCALE_LABELS[locale] || locale.toUpperCase()}</span>
+                {locale === currentLocale && (
+                  <motion.span
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="ml-auto text-xs text-primary"
+                  >
+                    ●
+                  </motion.span>
+                )}
+              </motion.button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

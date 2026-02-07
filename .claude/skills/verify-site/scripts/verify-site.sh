@@ -67,17 +67,15 @@ if [[ "$SKIP_LINT" == false ]]; then
   fi
 fi
 
-# ─── 2. Build ───
-if [[ "$SKIP_BUILD" == false ]]; then
-  section "Production Build"
-  if npm run build 2>&1 | tail -10; then
-    pass "Production build succeeds"
-  else
-    fail "Production build failed"
-  fi
+# ─── 2. TypeScript check ───
+section "TypeScript Check"
+if npx tsc --noEmit 2>&1 | tail -5; then
+  pass "TypeScript compilation succeeds"
+else
+  fail "TypeScript errors found"
 fi
 
-# ─── 3. Route checks ───
+# ─── 3. Route checks (BEFORE build, while dev server is running) ───
 section "Route Verification (port $PORT)"
 
 check_route() {
@@ -85,7 +83,6 @@ check_route() {
   local expected_status="$2"
   local label="$3"
 
-  # Use -L to NOT follow redirects for redirect checks, or follow for 200s
   if [[ "$expected_status" == "307" || "$expected_status" == "301" || "$expected_status" == "302" ]]; then
     actual_status=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 "$url" 2>/dev/null || echo "000")
   else
@@ -162,12 +159,36 @@ else
   fi
 fi
 
-# ─── 5. TypeScript check ───
-section "TypeScript Check"
-if npx tsc --noEmit 2>&1 | tail -5; then
-  pass "TypeScript compilation succeeds"
-else
-  fail "TypeScript errors found"
+# ─── 5. Build (AFTER route checks — this overwrites .next and breaks the dev server) ───
+if [[ "$SKIP_BUILD" == false ]]; then
+  section "Production Build"
+  echo -e "  ${YELLOW}Note: Stopping dev server for clean build...${NC}"
+
+  # Kill the dev server to avoid .next conflicts
+  lsof -ti:"$PORT" | xargs kill 2>/dev/null || true
+  sleep 1
+  rm -rf .next
+
+  if npm run build 2>&1 | tail -10; then
+    pass "Production build succeeds"
+  else
+    fail "Production build failed"
+  fi
+
+  # Restart the dev server
+  echo -e "  ${YELLOW}Restarting dev server on port $PORT...${NC}"
+  rm -rf .next
+  npm run dev -- -p "$PORT" &
+  DEV_PID=$!
+
+  # Wait for dev server to be ready
+  for i in $(seq 1 30); do
+    if curl -s --max-time 2 "$BASE_URL" > /dev/null 2>&1; then
+      echo -e "  ${GREEN}✓${NC} Dev server restarted"
+      break
+    fi
+    sleep 1
+  done
 fi
 
 # ─── Summary ───
