@@ -6,6 +6,7 @@ import AnimatedPortrait from '@/components/utils/AnimatedPortrait';
 import Button from '@/components/utils/Button';
 import Popover from '@/components/utils/Popover';
 import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
 import { FiDownloadCloud, FiMenu } from 'react-icons/fi';
 import css from './NavBar.module.css';
 
@@ -18,10 +19,31 @@ interface NavBarProps {
 const navBtnStyle =
   'flex h-9 items-center gap-1.5 rounded-full border border-white/20 bg-white/50 px-3 backdrop-blur-lg transition-colors hover:border-white/40 dark:bg-black/50 dark:text-white';
 
+const sectionIds = ['about', 'projects', 'workHistory', 'contact'];
+
 export default function NavBar({ imageUrl, resumeUrl, locale }: NavBarProps) {
   const t = useTranslations('nav');
   const tMenu = useTranslations('menu');
   const tAlt = useTranslations('alt');
+  const [activeSection, setActiveSection] = useState<string>('');
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(`/#${entry.target.id}`);
+          }
+        }
+      },
+      { rootMargin: '-40% 0px -40% 0px', threshold: 0 },
+    );
+    for (const id of sectionIds) {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    }
+    return () => observer.disconnect();
+  }, []);
 
   const menuItems = [
     { label: tMenu('about'), href: '/#about' },
@@ -40,7 +62,7 @@ export default function NavBar({ imageUrl, resumeUrl, locale }: NavBarProps) {
         </Button>
         <div className="flex items-center gap-1.5 sm:gap-2">
           <Popover icon={FiMenu} className={navBtnStyle} label={t('menu')} hideLabel>
-            <MenuList items={menuItems} />
+            <MenuList items={menuItems} activeHref={activeSection} />
           </Popover>
           <LanguageToggle currentLocale={locale} />
           <Button
