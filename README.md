@@ -1,4 +1,4 @@
-# Portfolio v1.2.0
+# Portfolio v1.2.1
 
 Personal developer portfolio built with [**Next.js 16**](https://nextjs.org/) (App Router) and [**Sanity.io**](https://www.sanity.io/) as headless CMS. Single-page site with sections: Home, About, Projects, Work History, Contact. All content is managed in Sanity and fetched server-side via GROQ queries.
 

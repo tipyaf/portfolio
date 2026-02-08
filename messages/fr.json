@@ -22,7 +22,10 @@
   },
   "workHistory": {
     "title": "Parcours professionnel",
-    "present": "Présent"
+    "present": "Aujourd'hui",
+    "full-time": "Plein temps",
+    "internship": "Stage",
+    "part-time": "Temps partiel"
   },
   "contact": {
     "title": "Contact",
