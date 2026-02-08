@@ -22,7 +22,10 @@
   },
   "workHistory": {
     "title": "Work history",
-    "present": "Present"
+    "present": "Present",
+    "full-time": "Full-time",
+    "internship": "Internship",
+    "part-time": "Part-time"
   },
   "contact": {
     "title": "Contact",

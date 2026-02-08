@@ -11,6 +11,7 @@ interface JobCardProps {
   showDescription?: boolean;
   locale: string;
   presentLabel: string;
+  jobTypeLabel: string;
 }
 
 export default function JobCard({
@@ -18,6 +19,7 @@ export default function JobCard({
   showDescription = true,
   locale,
   presentLabel,
+  jobTypeLabel,
 }: JobCardProps) {
   const role = localize(job, 'role', locale) as string;
   const location = localize(job, 'location', locale) as string;
@@ -36,7 +38,7 @@ export default function JobCard({
       <div className="text-sm font-light">
         {job.date.start} - {job.date?.present ? presentLabel : job.date.end}
         <span className="ml-1">
-          (<span className="inline-block first-letter:uppercase">{job.jobType}</span>)
+          (<span className="inline-block first-letter:uppercase">{jobTypeLabel}</span>)
         </span>
       </div>
       <div className="text-sm font-extralight">{location}</div>
