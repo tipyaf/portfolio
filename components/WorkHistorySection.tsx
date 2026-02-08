@@ -63,6 +63,7 @@ export default function WorkHistorySection({ jobs, locale }: WorkHistoryProps) {
                 job={item}
                 locale={locale}
                 presentLabel={t('present')}
+                jobTypeLabel={t(item.jobType)}
               />
             </motion.div>
           ))}
@@ -86,7 +87,12 @@ export default function WorkHistorySection({ jobs, locale }: WorkHistoryProps) {
                       icon={RxCross2}
                       className="fixed right-2 top-10 rounded-full border-[1px] bg-white px-3 py-2 text-tertiary shadow transition-colors duration-300"
                     ></Button>
-                    <JobCard job={item} locale={locale} presentLabel={t('present')} />
+                    <JobCard
+                      job={item}
+                      locale={locale}
+                      presentLabel={t('present')}
+                      jobTypeLabel={t(item.jobType)}
+                    />
                   </motion.div>
                 ),
             )}
